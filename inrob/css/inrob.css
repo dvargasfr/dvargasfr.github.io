@@ -870,12 +870,13 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   background-image: url(../img/blackboard-bg.jpg);
 }
 .consulting-bg {
-  background-image: url(../img/white-wp-bg.jpg); 
+  background-image: url(../img/white-wp-bg.jpg);
   /*background-image: url(../img/logo-ros2.png);*/
   /*opacity: 0.5;*/
 }
 .research-bg {
-  background-image: url(../img/black-bg.jpg);
+  /*background-image: url(../img/black-bg.jpg);*/
+  background-image: url(../img/dark-grey-bg.jpg);
 }
 .training-bg {
   background-image: url(../img/red-bg.jpg);
@@ -927,7 +928,25 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   text-align: center!important;
   padding: 5%;
 }
-
 .consulting-text{
   padding: 5px;
+}
+.video-window{
+  width: 80%;
+}
+.researching-item{
+  width: 100%;
+  display: flex;
+  display: -webkit-flex;
+  justify-content: center;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.researching-video{
+  width: 60%;
+  align-self: flex-start;
+  border-style: solid;
+  border-radius: 150%;
+  border-color: black;
 }
