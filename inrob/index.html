@@ -167,15 +167,25 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Research</h2>
+            <h2 class="section-heading text-uppercase" style="color: white">Research</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
         <div class="row">
           <div class="researching-item">
-            <video class="video-window" poster="img/header-bg.jpg" style="background-size:100% 100%" src="video/topological_nav_pepper.mkv" type='video/x-matroska; codecs="theora, vorbis"' controls></video>
+            <video class="video-window" style="background-size:100% 100%" onclick="this.paused ? this.play() : this.pause();" src="video/topological_nav_pepper.mkv#t=2" type='video/x-matroska; codecs="theora, vorbis"' controls></video>
           </div>
         </div>
+
+        <!-- Imagen redonda que muestra video que aparece sobre fondo oscurecido-->
+        <!--div class="row">
+          <div class="research-item">
+            <img class="popupimg" onclick="toggleVideo()" src="img/tf.jpg" alt="">
+            <div class="popup" id="myPopup" onclick="toggleVideo()">
+            </div>
+          </div>
+        </div-->
+
       </div>
     </section>
 
@@ -184,7 +194,7 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Training</h2>
+            <h2 class="section-heading text-uppercase" style="color: white">Training</h2>
             <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
           </div>
         </div>
@@ -247,6 +257,19 @@
           position: urjc,
           map: map
         });
+      }
+
+      function toggleVideo() {
+        var popup = document.getElementById("myPopup");
+        if (popup.classList.toggle("open")){
+          var videoelem = "<video class=\"video-window\" id =\"videoPopup\" poster=\"img/header-bg.jpg\"\
+                            style=\"background-size:100% 100%\" src=\"video/topological_nav_pepper.mkv\" \
+                            type=\"video/x-matroska; codecs=&quot;theora, vorbis&quot;\" controls=\"\"></video>";
+          popup.innerHTML = videoelem;
+        }else{
+          var video = document.getElementById("videoPopup");
+          popup.removeChild(video);
+        }
       }
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDtP25jsuESmlSvPZHyDOzFA0aGvmG8NtA&callback=initMap&libraries=places,visualization"></script>

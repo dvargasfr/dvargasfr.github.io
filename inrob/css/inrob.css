@@ -114,7 +114,7 @@ img::-moz-selection {
   text-transform: uppercase;
   color: white;
   border: 0;
-  background-color: #fed136;
+  background-color: #6c757d;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }
 
@@ -881,7 +881,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 .training-bg {
   background-image: url(../img/red-bg.jpg);
 }
-.consulting-item{
+.consulting-item, .research-item{
   width: 100%;
   display: inline-flex;
   display: -webkit-inline-flex;
@@ -916,7 +916,6 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   text-align: center!important;
   padding: 5%;
 }
-
 .consulting-left-text{
   position: absolute;
   width: 50%;
@@ -933,6 +932,7 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
 }
 .video-window{
   width: 80%;
+  align-self: center;
 }
 .researching-item{
   width: 100%;
@@ -949,4 +949,66 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   border-style: solid;
   border-radius: 150%;
   border-color: black;
+}
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(24,48,69,.8);
+    z-index: 9999;
+    padding: 15px;
+    opacity: 0;
+    visibility: hidden;
+    /*display: none;
+    visibility: visible;
+    opacity: 1;*/
+    transition: .2s;
+}
+.popupimg {
+    /*visibility: hidden;*/
+    width: 160px;
+    background-color: white;
+    color: red;
+    text-align: center;
+    border-radius: 200px;
+    padding: 8px 0;
+    align-self: center;
+    /*position: absolute;
+    z-index: 1;
+    left: 50%;*/
+    /*bottom: 125%;
+    margin-left: -80px;*/
+}
+.open {
+    -webkit-animation: fadeIn 1s;
+    animation: fadeIn 1s;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    visibility: visible;
+    opacity: 1;
+}
+@-webkit-keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+@keyframes fadeIn {
+    from {opacity: 0;}
+    to {opacity:1 ;}
+}
+.popup .popuptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #555 transparent transparent transparent;
 }
