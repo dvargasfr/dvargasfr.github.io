@@ -478,10 +478,10 @@ header.masthead .intro-text .intro-heading {
   height: 80px;
   margin-left: 0;
   text-align: center;
-  color: white;
+  color: #1b1e21; /*white;*/
   border: 7px solid #e9ecef;
   border-radius: 100%;
-  background-color: #fed136;
+  background-color: #e9ecef; /*#fed136;*/
 }
 
 .timeline > li .timeline-image h4 {
@@ -892,15 +892,14 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   flex-direction: column;
 }
 .consulting-right-img{
-   width: 100px; /*60%;*/
-   height: 100px;
+   width: 40%;
    align-self: flex-end;
    border-style: solid;
    border-radius: 150%;
    border-color: black;
 }
 .consulting-left-img{
-  width: 60%;
+  width: 40%;
   align-self: flex-start;
   border-style: solid;
   border-radius: 150%;
