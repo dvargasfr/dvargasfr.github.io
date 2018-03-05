@@ -293,6 +293,7 @@ header.masthead .intro-text .intro-heading {
   margin-top: -12px;
   text-align: center;
   color: white;
+  padding: 5px;
 }
 
 #portfolio .portfolio-item .portfolio-link .portfolio-hover .portfolio-hover-content i {
@@ -870,7 +871,8 @@ ul.social-buttons li a:active, ul.social-buttons li a:focus, ul.social-buttons l
   background-image: url(../img/blackboard-bg.jpg);
 }
 .consulting-bg {
-  background-image: url(../img/white-wp-bg.jpg);
+  background-color: #efefef;
+  /*background-image: url(../img/white-wp-bg.jpg);*/
   /*background-image: url(../img/logo-ros2.png);*/
   /*opacity: 0.5;*/
 }
