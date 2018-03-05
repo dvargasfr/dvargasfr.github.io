@@ -39,6 +39,9 @@
         <div class="collapse navbar-collapse" id="navbarResponsive">
           <ul class="navbar-nav text-uppercase ml-auto">
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="#portfolio">Activities</a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link js-scroll-trigger" href="#consulting">Consulting</a>
             </li>
             <li class="nav-item">
@@ -48,7 +51,7 @@
               <a class="nav-link js-scroll-trigger" href="#training">Training</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll-trigger" href="#contact">Contact</a>
+              <a class="nav-link js-scroll-trigger" href="#team">Team</a>
             </li>
           </ul>
         </div>
@@ -56,15 +59,15 @@
     </nav>
 
     <!-- Intro -->
-    <section class="inrob-bg" id="portfolio" style="padding: 200px 0px">
+    <section class="inrob-bg" id="portfolio" style="padding: 120px 0px">
       <div class="container">
         <div class="row">
           <div class="col-md-4 col-sm-6 portfolio-item" style="padding:1">
             <a class="portfolio-link js-scroll-trigger" href="#consulting">
               <div class="portfolio-hover" style="background:white">
                 <div class="portfolio-hover-content" >
-                  <h2 style="color:black">Mobile Robotics</h2>
-                  <span style="color:black">Development of Navigation, Localization, Perception and HRI on real robots</span>
+                  <h2 style="color:black; font-size: 25px;">Mobile Robotics</h2>
+                  <span style="color:black; font-size: 18px;">Development of Navigation, Localization, Perception and HRI on real robots</span>
                 </div>
               </div>
               <img class="img-fluid" src="img/header-bg.jpg" alt="">
@@ -72,10 +75,11 @@
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item" style="padding:1">
             <a class="portfolio-link js-scroll-trigger" href="#research">
-              <div class="portfolio-hover" style="background:blue">
+              <div class="portfolio-hover" style="background:danger">
                 <div class="portfolio-hover-content">
-                  <h2>ROS</h2>
-                  <span>We are experts on teaching, consulting and development in ROS and ROS2 Technologies</span>
+                  <h2 style="color:black; font-size: 25px;">ROS</h2>
+                  <span style="color:black; font-size: 18px;">We are experts on teaching, consulting and development in
+                    ROS and ROS2 Technologies</span>
                 </div>
               </div>
               <img class="img-fluid" src="img/ros_logo.jpg" alt="">
@@ -83,15 +87,13 @@
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item" style="padding:1">
             <a class="portfolio-link js-scroll-trigger" href="#training">
-              <div class="portfolio-hover" style="background:danger">
+              <div class="portfolio-hover" style="background:black">
                 <div class="portfolio-hover-content">
-                  <div>
-                  <h2 style="color:black">Augmented Reality</h2>
-                  <span style="color:black">Combining reality with information </span>
-                  </div>
+                  <h2 style="color:white; font-size: 25px;">Augmented Reality</h2>
+                  <span style="color:white; font-size: 18px;">Combining reality with information</span>
                 </div>
               </div>
-              <img class="img-fluid" src="img/ar.jpg" alt="">
+              <img class="img-fluid" src="img/ar2.jpg" alt="">
             </a>
           </div>
         </div>
@@ -102,8 +104,8 @@
             <a class="portfolio-link js-scroll-trigger" href="#consulting">
               <div class="portfolio-hover" style="background:danger">
                 <div class="portfolio-hover-content" >
-                  <h2 style="color:black">UAV</h2>
-                  <span style="color:black">Applications for Drones</span>
+                  <h2 style="color:black; font-size: 25px;">UAV</h2>
+                  <span style="color:black; font-size: 18px;">Applications for Drones</span>
                 </div>
               </div>
               <img class="img-fluid" src="img/uav.jpg" alt="">
@@ -111,10 +113,10 @@
           </div>
           <div class="col-md-4 col-sm-6 portfolio-item" style="padding:1">
             <a class="portfolio-link js-scroll-trigger" href="#research">
-              <div class="portfolio-hover" style="background:blue">
+              <div class="portfolio-hover" style="background:black">
                 <div class="portfolio-hover-content">
-                  <h2>Autonomous Vehicles</h2>
-                  <span>Appliying ROS to autonomous cars development</span>
+                  <h2 style="color:white; font-size: 25px;">Autonomous Vehicles</h2>
+                  <span style="color:white; font-size: 18px;">Appliying ROS to autonomous cars development</span>
                 </div>
               </div>
               <img class="img-fluid" src="img/autos.jpg" alt="">
@@ -124,10 +126,8 @@
             <a class="portfolio-link js-scroll-trigger" href="#training">
               <div class="portfolio-hover" style="background:white">
                 <div class="portfolio-hover-content">
-                  <div>
-                  <h2 style="color:black">Artificial Intelligence</h2>
-                  <span style="color:black">Beyond Classical AI, we are experts on applying Deep Learning to real applications</span>
-                  </div>
+                  <h2 style="color:black; font-size: 25px;">Artificial Intelligence</h2>
+                  <span style="color:black; font-size: 18px;">Beyond Classical AI, we are experts on applying Deep Learning to real applications</span>
                 </div>
               </div>
               <img class="img-fluid" src="img/deep.jpg" alt="">
@@ -147,173 +147,50 @@
               advanced Mobile Robotics techniques in Robotics and IoT projects.</h3>
           </div>
         </div>
-        <div class="row">
-          <div class="col-lg-12">
-            <ul class="timeline">
-              <li>
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/ros-turtle.jpg" alt="" style="height:100%">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>Advicing</h4>
-                    <!--h4 class="subheading">Our Humble Beginnings</h4-->
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">We advise companies in the adoption of ROS technology. Thanks to this technology,
-                        the development processes are optimized and it allows to address projects that involve advanced
-                        technologies.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted">
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/tf-nao3.png" alt="" style="height:100%">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>Why ROS?</h4>
-                    <!--h4 class="subheading">An Agency is Born</h4-->
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">Because creating truly robust,
-                      general-purpose robot software is hard. From the robot's perspective,
-                      problems that seem trivial to humans often vary wildly between
-                      instances of tasks and environments. Dealing with these variations
-                      is so hard that no single individual, laboratory, or institution
-                      can hope to do it on their own.</p>
-                  </div>
-                </div>
-              </li>
-              <li>
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/ros-kinetic.png" alt="" style="height:100%">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>Constant evolution</h4>
-                    <!--h4 class="subheading">Transition to Full Service</h4-->
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">ROS is a large project with many ancestors and contributors.
-                      The need for an open-ended collaboration framework was felt by
-                      many people in the robotics research community, and many projects
-                      have been created towards this goal.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted">
-                <div class="timeline-image">
-                  <img class="rounded-circle img-fluid" src="img/wall-e.jpg" alt="" style="height:100%">
-                </div>
-                <div class="timeline-panel">
-                  <div class="timeline-heading">
-                    <h4>I+D projects</h4>
-                    <!--h4 class="subheading">Phase Two Expansion</h4-->
-                  </div>
-                  <div class="timeline-body">
-                    <p class="text-muted">We make available our expert team to
-                      develop customized applications based on ROS.</p>
-                  </div>
-                </div>
-              </li>
-              <li class="timeline-inverted">
-                <div class="timeline-image">
-                  <h4>Growing
-                    <br>day by
-                    <br>day</h4>
-                </div>
-              </li>
-            </ul>
+        <div class="row text-center">
+          <div class="col-md-6">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-cogs fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">Advicing</h4>
+            <p class="text-muted">We advise companies in the adoption of ROS technology. Thanks to this technology,
+                the development processes are optimized and it allows to address projects that involve advanced
+                technologies. </p>
+          </div>
+          <div class="col-md-6">
+            <span class="fa-stack fa-4x">
+              <i class="fa fa-circle fa-stack-2x text-primary"></i>
+              <i class="fa fa-code fa-stack-1x fa-inverse"></i>
+            </span>
+            <h4 class="service-heading">I+D projects</h4>
+            <p class="text-muted">We make available our expert team to
+                develop customized applications based on ROS. Solutions provided are based on the most cutting edge robotic technologies.</p>
           </div>
         </div>
+
       </div>
     </section>
 
-    <!-- Consulting -->
-<!--
-    <section class="consulting-bg" id="consulting">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Consulting</h2>
-            <h3 class="section-subheading text-muted">Our activity focuses on applying
-              advanced Mobile Robotics techniques in Robotics and IoT projects.</h3>
-          </div>
-        </div>
-        <div class="row" style="margin: 40px -15px">
-          <div class="consulting-item">
-            <div class="consulting-right-text">
-              <h2>Advicing</h2>
-              <span>We advise companies in the adoption of ROS technology. Thanks to this technology,
-                  the development processes are optimized and it allows to address projects that involve advanced
-                  technologies.</span>
-            </div>
-            <img class="consulting-right-img" src="img/ros-turtle.jpg" alt="">
-          </div>
-        </div>
-        <div class="row" style="margin: 40px -15px">
-          <div class="consulting-item">
-            <img class="consulting-left-img" src="img/tf-nao.png" alt="">
-            <div class="consulting-left-text">
-<<<<<<< HEAD
-              <h2>WHY ROS?</h2>
-              <span class="consulting-text"> Why? Because creating truly robust,
-                general-purpose robot software is hard. From the robot's perspective,
-                problems that seem trivial to humans often vary wildly between
-                instances of tasks and environments. Dealing with these variations
-                is so hard that no single individual, laboratory, or institution
-                can hope to do it on their own. </span>
-            </div>
-          </div>
-        </div>
-        <div class="row" style="margin: 40px -15px">
-          <div class="consulting-item">
-            <div class="consulting-right-text">
-              <h2>CONSTANT EVOLUTION</h2>
-              <span>ROS is a large project with many ancestors and contributors.
-                The need for an open-ended collaboration framework was felt by
-                many people in the robotics research community, and many projects
-                have been created towards this goal. </span>
-            </div>
-            <img class="consulting-right-img" src="img/ros-kinetic.png" alt="">
-          </div>
-        </div>
-        <div class="row" style="margin: 40px -15px">
-          <div class="consulting-item">
-            <img class="consulting-left-img" src="img/wall-e.redim.jpg" alt="">
-            <div class="consulting-left-text">
-              <h2>WHY ROS?</h2>
-              <span class="consulting-text"> Why? Because creating truly robust,
-                general-purpose robot software is hard. From the robot's perspective,
-                problems that seem trivial to humans often vary wildly between
-                instances of tasks and environments. Dealing with these variations
-                is so hard that no single individual, laboratory, or institution
-                can hope to do it on their own. </span>
-=======
-              <h2>I+D Projects</h2>
-              <span class="consulting-text"> We make available our expert team to
-                develop customized applications based on ROS.
-               </span>
->>>>>>> 5f9d5f0e5868a19a0608ec4fe6cc61fde2617ff4
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
--->
     <!-- Research -->
     <section class="research-bg" id="research">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
             <h2 class="section-heading text-uppercase" style="color: white">Research</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <p class="section-subheading text-muted" style="color: white!important">We work with cutting edge technologies
+              that make possible the most sophisticated and efficient robotics solutions.</p>
           </div>
         </div>
         <div class="row">
           <div class="researching-item">
             <video class="video-window" style="background-size:100% 100%" onclick="this.paused ? this.play() : this.pause();" src="video/topological_nav_pepper.mkv#t=2" type='video/x-matroska; codecs="theora, vorbis"' controls></video>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12 text-center" style="margin-top: 50px">
+            <p class="section-subheading text-muted" style="color: white!important"> Find out our daily researching
+              work at <a style="color: red!important; text-shadow: 0 0 15px black; font-weight: bold; font-family: 'Roboto Slab'" href="https://dvargasfr.github.io/lab/">Intelligent Robotics LAB</a> website.</p>
           </div>
         </div>
 
@@ -334,15 +211,137 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase" style="color: white">Training</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase" style="color: black">Training</h2>
+            <h3 class="section-subheading text-muted">Learn to program real robots with ROS !</h3>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-lg-12">
+            <ul class="timeline">
+              <li>
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/ros-kinetic.png" alt="" style="height:100%">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading" >
+                    <h4 style="color: black">Introduction to ROS</h4>
+                    <h4 class="subheading">10 hours</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Introduction to ROS basic concepts:<br>
+                      • Instalation and components description<br>
+                      • Workspaces<br>
+                      • Execution graphs<br>
+                      • Resources and documentation<br>
+                      • Robots	and sensors	with	ROS<br>
+                      • Packages	and third party	software</p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/tf-nao3.png" alt="" style="height:100%">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4 style="color: black">ROS TF</h4>
+                    <h4 class="subheading">5 hours</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Use of the transform system in ROS:<br>
+                      • Relation between coordinate frames<br>
+                      • Perception with TF<br>
+                      • Relation between spaces<br>
+                      • Design of TF solutions</p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/robot-arm-space2.png" alt="" style="height:100%">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4 style="color: black">ROS Manipulation</h4>
+                    <h4 class="subheading">5 hours</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Use of the manipulation system in ROS:<br>
+                    • MoveIt!<br>
+                    • Robot arms configuration</p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/pepper-perception2-2.png" alt="" style="height:100%">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4 style="color: black">ROS Perception</h4>
+                    <h4 class="subheading">20 hours</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Sensory processing in ROS:<br>
+                    • LIDAR sensors<br>
+                    • Visual 2D perception + OpenCV<br>
+                    • Visual 3D perception + PCL<br>
+                    • Perception packages in ROS
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li>
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/ros-turtle.jpg" alt="" style="height:100%">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4 style="color: black">ROS Navigation</h4>
+                    <h4 class="subheading">20 hours</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted">Use of the navigating system in ROS:<br>
+                    • Mapping (Cartographer and Mapping)<br>
+                    • Autolocalization (AMCL)<br>
+                    • Navegation (Move Base)
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <img class="rounded-circle img-fluid" src="img/ros2-ardent-2.png" alt="" style="height:100%">
+                </div>
+                <div class="timeline-panel">
+                  <div class="timeline-heading">
+                    <h4 style="color: black">ROS 2</h4>
+                    <h4 class="subheading">10 hours</h4>
+                  </div>
+                  <div class="timeline-body">
+                    <p class="text-muted" >The next ROS generation:<br>
+                    • Compilating sistem<br>
+                    • DDS with Fast-RTPS<br>
+                    • Demos
+                    </p>
+                  </div>
+                </div>
+              </li>
+              <li class="timeline-inverted">
+                <div class="timeline-image">
+                  <h4 style="color: white">Become
+                    <br>an expert
+                    <br>roboticist!</h4>
+                </div>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Contact -->
-    <section id="contact">
+    <!-- Team -->
+    <!--section id="team">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
@@ -353,16 +352,96 @@
           </div>
         </div>
       </div>
-      <div id="urjc-map"></div>
+    </section-->
+
+
+
+
+
+    <section id="team">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Around the Web</h2>
-            <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
+            <h2 class="section-heading text-uppercase" style="color:white">Team</h2>
+            <h3 class="section-subheading text-muted">Know the people who make this possible.</h3>
           </div>
         </div>
-      </div>
+
+        <div class="row">
+          <div class="col-sm-4">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="img/team/juanpedro.jpg" alt="">
+              <h4 style="color:white">Juan Pedro Martínez</h4>
+              <p class="text-muted">CEO</p>
+              <ul class="list-inline social-buttons">
+                <!--li class="list-inline-item">
+                  <a href="jpedro@inrobots.es">
+                    <i class="fa fa-envelope"></i>
+                  </a>
+                </li-->
+                <li class="list-inline-item">
+                  <a href="https://www.linkedin.com/in/jpedromartinez/">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+              </ul>
+              <p class="text-muted" style="margin-top:15px">jpedro@inrobots.es</p>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="img/team/esteve.jpg" alt="">
+              <h4 style="color:white">Esteve Fernández</h4>
+              <p class="text-muted">Advisor</p>
+              <ul class="list-inline social-buttons">
+                <li class="list-inline-item">
+                  <a href="https://www.linkedin.com/in/estevefernandez/">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://twitter.com/esteve">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="col-sm-4">
+            <div class="team-member">
+              <img class="mx-auto rounded-circle" src="img/team/paco.bin" alt="">
+              <h4 style="color:white">Francisco Martín</h4>
+              <p class="text-muted">Advisor</p>
+              <ul class="list-inline social-buttons">
+                <li class="list-inline-item">
+                  <a href="https://www.linkedin.com/in/fmrico/">
+                    <i class="fa fa-linkedin"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="https://twitter.com/Fmrico">
+                    <i class="fa fa-twitter"></i>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+        </div>
+        <!--div class="row">
+          <div class="col-lg-8 mx-auto text-center">
+            <p class="large text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aut eaque, laboriosam veritatis, quos non quis ad perspiciatis, totam corporis ea, alias ut unde.</p>
+          </div>
+        </div>
+      </div-->
     </section>
+
+
+
+
+
 
     <!-- Bootstrap core JavaScript -->
     <script src="startbootstrap-agency-gh-pages/vendor/jquery/jquery.min.js"></script>
