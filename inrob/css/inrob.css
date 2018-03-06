@@ -8,11 +8,13 @@ p {
 }
 
 a {
-  color: #fed136;
+  /*color: #fed136;*/
+  color: red;
 }
 
 a:hover {
-  color: #fec503;
+  /*color: #fec503;*/
+  color: red;
 }
 
 .text-primary {
