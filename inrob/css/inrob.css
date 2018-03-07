@@ -728,6 +728,7 @@ section#contact span {
 footer {
   padding: 25px 0;
   text-align: center;
+  background-color: black;
 }
 
 footer span.copyright {
@@ -735,6 +736,7 @@ footer span.copyright {
   line-height: 40px;
   text-transform: none;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: white;
 }
 
 footer ul.quicklinks {
@@ -743,6 +745,7 @@ footer ul.quicklinks {
   margin-bottom: 0;
   text-transform: none;
   font-family: 'Montserrat', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  color: white;
 }
 
 ul.social-buttons {
