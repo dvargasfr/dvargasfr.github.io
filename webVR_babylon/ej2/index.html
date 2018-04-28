@@ -19,6 +19,7 @@
         <script src="https://preview.babylonjs.com/loaders/babylonjs.loaders.js"></script>
         <script src="https://preview.babylonjs.com/serializers/babylonjs.serializers.min.js"></script>
         <script src="https://preview.babylonjs.com/gui/babylon.gui.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
         <style>
             html, body {
@@ -39,6 +40,12 @@
 <body>
     <canvas id="renderCanvas"></canvas>
     <script>
+        $(document).bind(
+          'touchmove',
+          function(e) {
+            e.preventDefault();
+          }
+        );
         var canvas = document.getElementById("renderCanvas");
         var engine = new BABYLON.Engine(canvas, true);
 
