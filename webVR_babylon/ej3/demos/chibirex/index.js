@@ -14,7 +14,7 @@ var CreateChibiRexScene = function (engine) {
 		}
 	});
 
-	var loader = BABYLON.SceneLoader.Append("/Assets/ChibiRex/glTF/", "ChibiRex_Saturated.gltf", scene, function () {
+	var loader = BABYLON.SceneLoader.Append("webVR_babylon/ej3/Assets/ChibiRex/glTF/", "ChibiRex_Saturated.gltf", scene, function () {
 		scene.createDefaultCameraOrLight(true, true, true);
 
 		scene.activeCamera.alpha = 2.5;
@@ -43,7 +43,7 @@ var CreateChibiRexScene = function (engine) {
 
 			groundShadowLevel: 0.8,
 
-			groundOpacity: 0.7, 
+			groundOpacity: 0.7,
 
 			skyboxColor: new BABYLON.Color3(.060, .0777, .082),
 			groundColor: new BABYLON.Color3(.07, .087, .0893)
