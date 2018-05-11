@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--meta http-equiv="refresh" content="2"-->
+  <!--meta name="viewport" content="width=device-width"/-->
+  <meta name="viewport" content="initial-scale = 1.333, minimum-scale = 1.333, maximum-scale = 1.333"/>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="index.css"/>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+  <script src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+
+</head>
+<body>
+  <!--button class="inspectionbutton" onclick="publish()">PUBLISH</button-->
+  <button class="inspectionbutton" onclick="go_websocket()">Go websocket.org</button>
+  <button class="inspectionbutton" onclick="mypublish()">SEND</button>
+  <p1 id="sentence"></p1>
+  <h2>WebSocket Test</h2>
+  <div id="output"></div>
+
+  <script>
+
+    function go_websocket(){
+      window.open("http://websocket.org/echo.html","_self");
+    }
+
+    var wsUri = "ws://10.108.53.107:9090";
+    var output;
+    var websocket;
+
+    function init()
+    {
+      output = document.getElementById("output");
+      testWebSocket();
+    }
+
+    function testWebSocket()
+    {
+      websocket = new WebSocket(wsUri);
+      websocket.onopen = function(evt) { onOpen(evt) };
+      websocket.onclose = function(evt) { onClose(evt) };
+      websocket.onmessage = function(evt) { onMessage(evt) };
+      websocket.onerror = function(evt) { onError(evt) };
+    }
+
+    function onOpen(evt)
+    {
+      writeToScreen("CONNECTED");
+      //doSend("WebSocket rocks");
+      console.log("CONNECTED");
+    }
+
+    function onClose(evt)
+    {
+      writeToScreen("DISCONNECTED");
+      console.log("DISCONNECTED");
+    }
+
+    function onMessage(evt)
+    {
+      writeToScreen('<span style="color: blue;">RESPONSE: ' + evt.data+'</span>');
+      console.log("onMessage "+evt.data);
+      websocket.close();
+    }
+
+    function onError(evt)
+    {
+      writeToScreen('<span style="color: red;">ERROR:</span> ' + evt.data);
+      console.log("onError "+evt.data);
+    }
+
+    function doSend(message)
+    {
+      writeToScreen("SENT op : " + message.op);
+      console.log("SENT op : " + message.op);
+      websocket.send(message);
+    }
+
+    function writeToScreen(message)
+    {
+      var pre = document.createElement("p");
+      pre.style.wordWrap = "break-word";
+      pre.innerHTML = message;
+      output.appendChild(pre);
+    }
+
+    window.addEventListener("load", init, false);
+
+    // ROS section
+    // -----------
+    var sentenceRequest = new ROSLIB.Service({
+      ros : websocket,
+      name : '/get_sentence',
+      serviceType : 'std_msgs/Empty'
+    });
+
+    function get_sentence(){
+      console.log('Calling service...');
+      var request = new ROSLIB.ServiceRequest();
+      sentenceRequest.callService(request, function(result) {
+        console.log('Sentence: ' + result.sentence.data);
+        document.getElementById("sentence").innerHTML = result.sentence.data;
+      });
+    }
+
+    function mypublish(){
+      outgoing_msg = {"op": "publish", "topic": "/aux_topic", "msg": "aux_msg"};
+      //outgoing_msg = {"op": "call_service", "id": "service_caller", "service": "/get_sentence"};
+      doSend(outgoing_msg);
+    }
+
+  </script>
+
+</body>
+</html>
