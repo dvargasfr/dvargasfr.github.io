@@ -1,0 +1,22 @@
+@font-face {
+    font-family: mrRobotFont;
+    src: url(roboticreality/font/mr-robot/MR-ROBOT.ttf);
+}
+
+body {
+   background-image: url("https://media.giphy.com/media/Bpqp2E59wkaOY/giphy.gif");
+   background-repeat: no-repeat;
+   background-size: 100%;
+   justify-content: center;
+   display: flex;
+}
+
+div {
+  position: absolute;
+  top: 20%;
+}
+
+img {
+  width: 100%;
+  display: inline-block;
+}
