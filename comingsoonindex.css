@@ -16,7 +16,7 @@ body {
    display: flex;
 }
 
-div {
+.comingsoon {
   position: absolute;
   top: 20%;
   height: 50%;
@@ -25,4 +25,10 @@ div {
 img {
   width: 100%;
   display: inline-block;
+}
+
+.footimg{
+  position: absolute;
+  bottom: 5%;
+  width: 40%;
 }
