@@ -1,0 +1,34 @@
+@font-face {
+    font-family: mrRobotFont;
+    src: url(roboticreality/font/mr-robot/MR-ROBOT.ttf);
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+   background-image: url("https://media.giphy.com/media/Bpqp2E59wkaOY/giphy.gif");
+   background-repeat: no-repeat;
+   background-size: cover;
+   background-position-x: center;
+   justify-content: center;
+   display: flex;
+}
+
+.comingsoon {
+  position: absolute;
+  top: 20%;
+  height: 50%;
+}
+
+img {
+  width: 100%;
+  display: inline-block;
+}
+
+.footimg{
+  position: absolute;
+  bottom: 5%;
+  width: 40%;
+}
