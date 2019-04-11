@@ -7,7 +7,7 @@
     <!-- create your content here. just a box for now -->
 
     <!-- define a camera which will move according to the marker position -->
-      <a-marker preset='hiro' id='marker-hiro' registerevents>
+      <a-marker preset='hiro' id='marker-hiro' registerevents markerhandler emitevents="true" cursor="rayOrigin: mouse">
         <a-box position='0 0.5 0' material='opacity: 0.5;'></a-box>
       </a-marker>
     <a-entity camera></a-entity>
@@ -15,7 +15,29 @@
 </body>
 <script>
   var scene = document.getElementsByTagName("a-marker")[0];
+  var arbox = document.getElementsByTagName("a-box")[0];
   scene.addEventListener('markerFound', function(){
     console.log("evento capturado");
-  })
+  });
+  scene.addEventListener('click', function(ev, target){
+    console.log("click detected");
+    const intersectedElement = ev && ev.detail && ev.detail.intersectedEl;
+      if (arbox && intersectedElement === arbox) {
+        console.log("elemento tocado!!");
+        var r = Math.round(Math.random()*255);
+        var g = Math.round(Math.random()*255);
+        var b = Math.round(Math.random()*255);
+        console.log("r "+r+" g "+g+" b "+b);
+        arbox.setAttribute('color',rgbToHex(r,g,b));
+      }
+  });
+
+  function componentToHex(c) {
+    var hex = c.toString(16);
+    return hex.length == 1 ? "0" + hex : hex;
+  }
+
+  function rgbToHex(r, g, b) {
+      return "#" + componentToHex(r) + componentToHex(g) + componentToHex(b);
+  }
 </script>
