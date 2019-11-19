@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="author" content="David Vargas">
+
+    <link href="css/index.css" rel="stylesheet">
+    <script type="text/javascript" src="http://static.robotwebtools.org/EventEmitter2/current/eventemitter2.min.js"></script>
+    <script type="text/javascript" src="http://static.robotwebtools.org/roslibjs/current/roslib.min.js"></script>
+  </head>
+
+  <body>
+    <div class="gui-container" style="margin-top: 10%">
+      <button type="button" onclick="wakeUp(true)" class="gui-item">DESPERTAR</button>
+      <button type="button" onclick="startQuiz(1)" class="gui-item">JUEGO 1</button>
+      <button type="button" onclick="choreo1()" class="gui-item">ASPIRADOR</button>
+    </div>
+    <div class="gui-container">
+      <button type="button" onclick="wakeUp(false)" class="gui-item">DORMIR</button>
+      <button type="button" onclick="startQuiz(2)" class="gui-item">JUEGO 2</button>
+      <button type="button" onclick="choreo2()" class="gui-item">TAI CHI</button>
+    </div>
+    <div class="gui-container" style="margin-top: 10%">
+      <input type="text" id="sayText" class="gui-input-item">
+      <button type="button" onclick="talk()" class="gui-input-button-item">HABLAR</button>
+    </div>
+
+  </body>
+  <script>
+
+    var ip = '192.168.1.182'
+    var ros = new ROSLIB.Ros({
+      url : 'ws://'+String(ip)+':9090'
+    });
+
+    var wakeUpTopic = new ROSLIB.Topic({
+      ros : ros,
+      name : '/cre_quiz/wake_up',
+      messageType : 'std_msgs/Bool'
+    });
+
+    var selectQuizTopic = new ROSLIB.Topic({
+      ros : ros,
+      name : '/cre_quiz/quiz_selected',
+      messageType : 'std_msgs/Int16'
+    });
+
+    var talkSrv = new ROSLIB.Service({
+      ros : ros,
+      name : '/pepper_basic_capabilities/talk',
+      serviceType : 'pepper_basic_capabilities_msgs/DoTalk'
+    });
+
+    var endSrv = new ROSLIB.Service({
+      ros : ros,
+      name : '/cre_quiz/start',
+      serviceType : 'std_srvs/SetBool'
+    });
+
+    function wakeUp(b) {
+      var wakeupCmd = new ROSLIB.Message({
+        data : b
+      });
+      wakeUpTopic.publish(wakeupCmd);
+    }
+
+    function startQuiz(n) {
+      var startquizCmd = new ROSLIB.Message({
+        data : n
+      });
+      selectQuizTopic.publish(startquizCmd);
+    }
+
+    function choreo1() {
+      var wakeupCmd = new ROSLIB.Message({
+        data : 'true'
+      });
+      wakeupTopic.publish(wakeupCmd);
+    }
+
+    function choreo2() {
+      var wakeupCmd = new ROSLIB.Message({
+        data : 'true'
+      });
+      wakeupTopic.publish(wakeupCmd);
+    }
+
+    function talk () {
+      var str = document.getElementById("myText").value;
+      var talkRequest = new ROSLIB.ServiceRequest({
+        sentence : str
+      });
+      talkSrv.callService(talkRequest, function(result) {});
+    }
+
+  </script>
+</html>
