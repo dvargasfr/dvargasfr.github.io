@@ -33,7 +33,7 @@
 
     var ip = '192.168.1.182'
     var ros = new ROSLIB.Ros({
-      url : 'ws://'+String(ip)+':9090'
+      url : 'wss://'+String(ip)+':9090'
     });
 
     var wakeUpTopic = new ROSLIB.Topic({
