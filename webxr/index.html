@@ -42,7 +42,7 @@
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
       <a-nft
         type="nft"
-        url="https://dvargasfr.github.io/webxr/logo-vodafone"
+        url="webxr/stones"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
@@ -54,7 +54,12 @@
               position="100 100 0"
           >
           </a-entity-->
-          <a-entity geometry="primitive: box" material="color: red"></a-entity>
+        <a-entity 
+            geometry="primitive: box" 
+            material="color: red" 
+            scale="10 10 10"
+            position="0 0 -10">
+        </a-entity>
       </a-nft>
       <a-entity camera></a-entity>
     </a-scene>
