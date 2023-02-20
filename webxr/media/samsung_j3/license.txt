@@ -1,0 +1,11 @@
+Model Information:
+* title:	Samsung J3 2016 [ULTRA LOW POLY]
+* source:	https://sketchfab.com/3d-models/samsung-j3-2016-ultra-low-poly-7bab1fa59628415e8586ed6d5b5c61bc
+* author:	BlueMesh (https://sketchfab.com/VapTor)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Samsung J3 2016 [ULTRA LOW POLY]" (https://sketchfab.com/3d-models/samsung-j3-2016-ultra-low-poly-7bab1fa59628415e8586ed6d5b5c61bc) by BlueMesh (https://sketchfab.com/VapTor) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
