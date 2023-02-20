@@ -8,7 +8,7 @@
     <!--script src="https://github.com/AR-js-org/AR.js/blob/master/aframe/build/aframe-ar-nft.js"></script-->
     <script src="js/aframe-ar-nft.js"></script>
 
-    <style>
+    <!--style>
       .arjs-loader {
         height: 100%;
         width: 100%;
@@ -27,19 +27,25 @@
         font-size: 1.25em;
         color: white;
       }
-    </style>
+    </style-->
   </head>
 
   <body style="margin : 0px; overflow: hidden;">
-    <div class="arjs-loader">
+    <!--div class="arjs-loader">
       <div>Loading, please wait...</div>
-    </div>
+    </div-->
 
-    <a-scene
+    <!--a-scene
       vr-mode-ui="enabled: false;"
       renderer="logarithmicDepthBuffer: true;"
       embedded
-      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;">
+      arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"-->
+    <a-scene>  
+      <a-assets>
+        <!--a-asset-items id="phone" src="media/apple_iphone_based_mobile_phone/scene.gltf"></a-asset-items-->
+        <a-asset-items id="phone" src="media/apple_iphone_based_mobile_phone/apple_iphone_based_mobile_phone.glb"></a-asset-items>
+      </a-assets>
+      <!--a-entity gltf-model="#phone" position="0 1.6 -0.15"></a-entity-->
       <a-nft
         type="nft"
         url="webxr/stones"
@@ -47,6 +53,13 @@
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5">
+          <a-entity gltf-model="#phone" scale="200 200 200" position="30 0 -10" rotation="-90 0 0"></a-entity>
+          <!--a-entity 
+            geometry="primitive: box" 
+            material="color: red" 
+            scale="1 1 1"
+            position="0 0 0"></a-entity-->
+        </a-nft>
           <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
           <!--a-entity
           gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
@@ -54,13 +67,18 @@
               position="100 100 0"
           >
           </a-entity-->
-        <a-entity 
+        <!--a-entity
+          gltf-model="https://dvargasfr.github.io/webxr/media/apple_iphone_based_mobile_phone/scene.gltf"
+          scale="5 5 5"
+          position="100 100 0">
+        </a-entity-->
+        <!--a-entity 
             geometry="primitive: box" 
             material="color: red" 
             scale="10 10 10"
             position="0 0 -10">
-        </a-entity>
-      </a-nft>
+        </a-entity-->
+      <!--/a-nft-->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
