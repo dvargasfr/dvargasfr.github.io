@@ -43,42 +43,29 @@
     <a-scene>  
       <a-assets>
         <!--a-asset-items id="phone" src="media/apple_iphone_based_mobile_phone/scene.gltf"></a-asset-items-->
-        <a-asset-items id="phone" src="media/apple_iphone_based_mobile_phone/apple_iphone_based_mobile_phone.glb"></a-asset-items>
+        <!--a-asset-items id="phone" src="media/apple_iphone_based_mobile_phone/iphone_12_pro.glb"></a-asset-items-->
+        <a-asset-items id="phone" src="media/cell_phone/cell_phone.glb"></a-asset-items>
       </a-assets>
       <!--a-entity gltf-model="#phone" position="0 1.6 -0.15"></a-entity-->
       <a-nft
         type="nft"
-        url="webxr/stones"
+        url="webxr/stones_square"
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
         smoothThreshold="5">
-          <a-entity gltf-model="#phone" scale="200 200 200" position="30 0 -10" rotation="-90 0 0"></a-entity>
+          <!-- Parameters for apple_iphone_based_mobile_phone.glb -->
+          <!--a-entity gltf-model="#phone" scale="200 200 200" position="30 0 -10" rotation="-90 0 0"></a-entity-->
+          <!-- Parameters for iphone_12_pro.glb -->
+          <!--a-entity gltf-model="#phone" scale="0.5 0.5 0.5" position="30 0 0" rotation="0 0 0"></a-entity-->
+          <!-- Parameters for cell_phone.glb -->
+          <a-entity gltf-model="#phone" scale="40 40 40" position="80 0 0" rotation="0 0 0"></a-entity>
           <!--a-entity 
             geometry="primitive: box" 
             material="color: red" 
             scale="1 1 1"
             position="0 0 0"></a-entity-->
         </a-nft>
-          <!-- as a child of the a-nft entity, you can define the content to show. here's a GLTF model entity -->
-          <!--a-entity
-          gltf-model="https://arjs-cors-proxy.herokuapp.com/https://raw.githack.com/AR-js-org/AR.js/master/aframe/examples/image-tracking/nft/trex/scene.gltf"
-              scale="5 5 5"
-              position="100 100 0"
-          >
-          </a-entity-->
-        <!--a-entity
-          gltf-model="https://dvargasfr.github.io/webxr/media/apple_iphone_based_mobile_phone/scene.gltf"
-          scale="5 5 5"
-          position="100 100 0">
-        </a-entity-->
-        <!--a-entity 
-            geometry="primitive: box" 
-            material="color: red" 
-            scale="10 10 10"
-            position="0 0 -10">
-        </a-entity-->
-      <!--/a-nft-->
       <a-entity camera></a-entity>
     </a-scene>
   </body>
