@@ -1,0 +1,33 @@
+<!doctype HTML>
+<html>
+    <script src="https://aframe.io/releases/1.0.4/aframe.min.js"></script>
+    <script src="js/aframe-ar.js"></script>
+    
+    <body style='margin : 0px; overflow: hidden;'>
+        <a-scene embedded arjs>
+
+        <a-assets>
+            <!--a-asset-item id="phone" src="media/cell_phone/cell_phone.glb"></a-asset-item-->
+            <!--a-asset-item id="phone" src="media/apple_iphone_based_mobile_phone/iphone_12_pro.glb"></a-asset-item-->
+            <a-asset-item id="phone" src="media/apple_iphone_based_mobile_phone/scene.gltf"></a-asset-item>
+        </a-assets>
+        <a-marker preset="hiro">
+            <a-entity
+                gltf-model="#phone" scale="15 15 15" position="0 0 -1.5" rotation="-90 0 0">
+            </a-entity>
+        </a-marker>
+
+        <!--a-marker type='barcode' value='7'>
+            <a-box position='0 0.5 0' color="yellow"></a-box>
+        </a-marker>
+
+        <a-marker id="animated-marker" type='barcode' value='6'>
+            <a-entity
+                gltf-model="#phone"
+                scale="2">
+            </a-entity>
+        </a-marker-->
+
+        </a-scene>
+    </body>
+</html>

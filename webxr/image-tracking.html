@@ -8,7 +8,7 @@
     <!--script src="https://github.com/AR-js-org/AR.js/blob/master/aframe/build/aframe-ar-nft.js"></script-->
     <script src="js/aframe-ar-nft.js"></script>
 
-    <!--style>
+    <style>
       .arjs-loader {
         height: 100%;
         width: 100%;
@@ -27,20 +27,20 @@
         font-size: 1.25em;
         color: white;
       }
-    </style-->
+    </style>
   </head>
 
   <body>
-    <!--div class="arjs-loader">
+    <div class="arjs-loader">
       <div>Loading, please wait...</div>
-    </div-->
+    </div>
 
     <!--a-scene
       vr-mode-ui="enabled: false;"
       renderer="logarithmicDepthBuffer: true;"
       embedded
       arjs="trackingMethod: best; sourceType: webcam;debugUIEnabled: false;"-->
-    <a-scene>  
+    <a-scene arjs="trackingMethod:best;debugUIEnabled:true;">  
       <a-assets>
         <!--a-asset-items id="phone" src="media/apple_iphone_based_mobile_phone/scene.gltf"></a-asset-items-->
         <!--a-asset-items id="phone" src="media/apple_iphone_based_mobile_phone/iphone_12_pro.glb"></a-asset-items-->
@@ -54,13 +54,14 @@
         smooth="true"
         smoothCount="10"
         smoothTolerance=".01"
-        smoothThreshold="5">
+        smoothThreshold="5"
+        size=".5">
           <!-- Parameters for apple_iphone_based_mobile_phone -->
           <!--a-entity gltf-model="#phone" scale="200 200 200" position="30 0 -10" rotation="-90 0 0"></a-entity-->
           <!-- Parameters for iphone_12_pro -->
           <!--a-entity gltf-model="#phone" scale="0.5 0.5 0.5" position="30 0 0" rotation="0 0 0"></a-entity-->
           <!-- Parameters for cell_phone -->
-          <a-entity gltf-model="#phone" scale="30 30 30" position="30 0 0" rotation="0 0 0"></a-entity>
+          <a-entity gltf-model="#phone" scale="30 30 30" position="30 60 0" rotation="0 0 0"></a-entity>
           <!-- Parameters for samsung_j3 -->
           <!--a-entity gltf-model="#phone" scale="1 1 1" position="0 0 0" rotation="0 0 0"></a-entity-->
           <!--a-entity 
@@ -72,5 +73,13 @@
       <a-entity camera></a-entity>
       <!--a-camera></a-camera-->
     </a-scene>
+    <div id="dimdiv" style="position:absolute; left:50px; top:50px"></div>
   </body>
+  <script>
+    document.getElementById("dimdiv").innerHTML = document.documentElement.clientWidth + " x " + document.documentElement.clientHeight;
+    let ascene = document.getElementById("a-scene");
+    let anft = document.getElementById("a-nft");
+    //ascene.resize();
+    document.getElementById("dimdiv").innerHTML = anft.size;
+  </script>
 </html>
