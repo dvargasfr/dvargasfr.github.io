@@ -5,6 +5,11 @@
     <script src="https://cdn.jsdelivr.net/npm/mind-ar@1.2.0/dist/mindar-image-aframe.prod.js"></script>
   </head>
   <body>
+    <!-- 
+        MindAR implements OneEuroFilter. There are two adjustable parameters:
+        Cutoff Frequency (filterMinCF), default value 0.001. Decrease it to reduce de jittering.
+        Speed Coefficient (filterBeta), default value 1000. Increse it to reduce the delay.
+    -->
     <a-scene mindar-image="imageTargetSrc:qr-repo-targets.mind; filterMinCF:0.1; filterBeta:10" vr-mode-ui="enabled: false" device-orientation-permission-ui="enabled: false">
       <a-assets>
         <a-asset-item id="phone" src="media/cell_phone/cell_phone.glb"></a-asset-item>
