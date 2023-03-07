@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html" charset="UTF-8" />
+        <title>Upload page</title>
+    </head>
+    <body>
+        <form action="https://webxr-vf.s3.amazonaws.com/" method="post" enctype="multipart/form-data">
+            <!--input type="hidden" name="acl" value="public-read" /-->
+            <input type="hidden" name="success_action_redirect" value="https://webxr-vf.s3.eu-west-3.amazonaws.com/index.html" />
+            Select file to upload: <input type="file" name="file"/><br/>
+            Filename: <input type="input" name="key" value=""/><br/>
+            <input type="submit" name="submit" value="Upload to Amazon S3">
+        </form>
+        <!--form action="https://DOC-EXAMPLE-BUCKET.s3.us-west-1.amazonaws.com/" method="post" enctype="multipart/form-data">
+            
+            <input type="hidden" name="acl" value="public-read" />
+            <input type="hidden" name="success_action_redirect" value="https://awsexamplebucket1.s3.us-west-1.amazonaws.com/successful_upload.html" />
+            Content-Type: <input type="input" name="Content-Type" value="image/jpeg" /><br />
+            <input type="hidden" name="x-amz-meta-uuid" value="14365123651274" />
+            Tags for File: <input type="input" name="x-amz-meta-tag" value="" /><br />
+            <input type="hidden" name="AWSAccessKeyId" value="AKIAIOSFODNN7EXAMPLE" />
+            <input type="hidden" name="Policy" value="POLICY" />
+            <input type="hidden" name="Signature" value="SIGNATURE" />
+            File: <input type="file" name="file" /> <br />
+            <input type="submit" name="submit" value="Upload to Amazon S3" />
+        </form-->
+    </form>
+    </body>
+</html>
