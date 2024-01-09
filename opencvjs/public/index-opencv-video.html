@@ -142,7 +142,7 @@
             let hierarchy = new cv.Mat();
             cv.findContours(dst_thresh, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
             let color = new cv.Scalar(255,0,0);
-            console.log(contours);
+            //console.log(contours);
             let max_per = 0;
             let max_per_i = 0;
             let max_area = 0;
@@ -167,8 +167,8 @@
                 //let rect_contour = cv.boundingRect(contours.get(i));
                 //cv.rectangle(dst_cont, new cv.Point(rect_contour.x, rect_contour.y), new cv.Point(rect_contour.x + rect_contour.width, rect_contour.y + rect_contour.height), new cv.Scalar(0,255,0), 2, cv.LINE_AA, 0);
             }
-            console.log("perimeter",max_per,"contour #", max_per_i);
-            console.log("area",max_area,"contour #", max_area_i);
+            //console.log("perimeter",max_per,"contour #", max_per_i);
+            //console.log("area",max_area,"contour #", max_area_i);
             let cnt_per = contours.get(max_per_i);
             let cnt_area = contours.get(max_area_i);
             let rect_per = cv.boundingRect(cnt_per);
@@ -242,6 +242,7 @@
                         new cv.Mat(dst_gray.rows, dst_gray.cols, dst_gray.type(), [255, 250, 250, 255]),  
                         dst_thresh);
                     cv.imshow("canvasFilter", dst_thresh);
+                    
 
                     /* Dilate */
                     //let M = cv.Mat.ones(5, 5, cv.CV_8U);
@@ -249,48 +250,40 @@
                     //cv.dilate(dst_thresh, dst_thresh, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
 
                     /* Contours */
+                    
                     let dst_cont = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
                     let contours = new cv.MatVector();
                     let hierarchy = new cv.Mat();
                     cv.findContours(dst_thresh, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+                    //console.log("after findContours, contours.size = ", contours.size());
                     let color = new cv.Scalar(255,0,0);
                     let max_per = 0;
                     let max_per_i = 0;
                     let max_area = 0;
                     let max_area_i = 0;
-                    for (let i = 0; i < contours.size(); ++i) {
-                        //perimeter = cv.arcLength(contours.get(i),true);
-                        area = cv.contourArea(contours.get(i), false);
-                        if (area > 3000){
-                            //cv.drawContours(dst_cont, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
-                            // Get the maximum perimeter contour 
-                            /*
-                            if (perimeter > max_per && perimeter < 2000){
-                                max_per = perimeter;
-                                max_per_i = i;
-                            }
-                            */
-                            // Get the maximum area contour 
-                            if (area > max_area){
-                                max_area = area;
-                                max_area_i = i;
+                    if (contours.size() > 0){
+                        for (let i = 0; i < contours.size(); ++i) {
+                            //perimeter = cv.arcLength(contours.get(i),true);
+                            area = cv.contourArea(contours.get(i), false);
+                            if (area > 3){
+                                //cv.drawContours(dst_cont, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
+                                // Get the maximum area contour 
+                                if (area > max_area){
+                                    max_area = area;
+                                    max_area_i = i;
+                                }
                             }
                         }
+
+                        
+                        let max_area_contour = contours.get(max_area_i);
+                        let max_area_bb = cv.boundingRect(max_area_contour);
+                        let max_area_bb_p1 = new cv.Point(max_area_bb.x, max_area_bb.y);
+                        let max_area_bb_p2 = new cv.Point(max_area_bb.x + max_area_bb.width, max_area_bb.y + max_area_bb.height);
+                        cv.rectangle(src_clone, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(255,0,0,255), 2, cv.LINE_AA, 0);
+                        
+                        
                     }
-                    /*
-                    let cnt_per = contours.get(max_per_i);
-                    let rect_per = cv.boundingRect(cnt_per);
-                    let point1_per = new cv.Point(rect_per.x, rect_per.y);
-                    let point2_per = new cv.Point(rect_per.x + rect_per.width, rect_per.y + rect_per.height);
-                    cv.rectangle(dst_cont, point1_per, point2_per, new cv.Scalar(0,255,0), 2, cv.LINE_AA, 0);
-                    */
-
-                    let max_area_contour = contours.get(max_area_i);
-                    let max_area_bb = cv.boundingRect(max_area_contour);
-                    let max_area_bb_p1 = new cv.Point(max_area_bb.x, max_area_bb.y);
-                    let max_area_bb_p2 = new cv.Point(max_area_bb.x + max_area_bb.width, max_area_bb.y + max_area_bb.height);
-                    cv.rectangle(src_clone, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(255,0,0,255), 2, cv.LINE_AA, 0);
-
                     //cv.imshow("canvasOutput", src);
                     //cv.imshow("canvasOutput", dst_gray);
                     //cv.imshow("canvasOutput", dst_thresh);
