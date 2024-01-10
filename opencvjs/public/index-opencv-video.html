@@ -234,10 +234,10 @@
                     let src_clone = src.clone();
                     let src_user = src.clone();
                     let begin = Date.now();
+                    cap.read(src);
                     cv.rectangle(src_user, new cv.Point(100, 100), new cv.Point(300, 400), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
                     
                     cv.imshow("canvasUser", src_user);
-                    cap.read(src);
                     //cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
                     //cv.rectangle(src, new cv.Point(200, 200), new cv.Point(400, 400), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
                     
