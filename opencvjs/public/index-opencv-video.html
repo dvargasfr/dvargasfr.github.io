@@ -50,6 +50,7 @@
   <body>
     <div>
         <video id="videoInput"></video> 
+        <canvas id="canvasUser"></canvas>
         <canvas id="canvasFilter"></canvas>
         <canvas id="canvasThreshold"></canvas>
         <canvas id="canvasOutput"></canvas>
@@ -230,12 +231,17 @@
                 let cap = new cv.VideoCapture(video);
                 const FPS = 30;
                 function processVideo() {
+                    let src_clone = src.clone();
+                    let src_user = src.clone();
                     let begin = Date.now();
+                    cv.rectangle(src_user, new cv.Point(100, 100), new cv.Point(300, 400), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
+                    
+                    cv.imshow("canvasUser", src_user);
                     cap.read(src);
                     //cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
                     //cv.rectangle(src, new cv.Point(200, 200), new cv.Point(400, 400), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
                     
-                    let src_clone = src.clone();
+                    
                     let ksize = new cv.Size(3, 3);
                     cv.GaussianBlur(src_clone, src_clone, ksize, 0, 0, cv.BORDER_DEFAULT);
                     //let dst_gray = new cv.Mat(height, width, cv.CV_8UC4);
@@ -295,8 +301,13 @@
                         let max_area_bb_p1 = new cv.Point(max_area_bb.x, max_area_bb.y);
                         let max_area_bb_p2 = new cv.Point(max_area_bb.x + max_area_bb.width, max_area_bb.y + max_area_bb.height);
                         cv.rectangle(src_clone, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(0,0,255,255), 2, cv.LINE_AA, 0);
-                        
-                        
+
+                        if(max_area_bb.x > 100){// &&  280 < max_area_bb.width && max_area_bb.width < 300){
+                            if (max_area_bb.y > 100 && 180 < max_area_bb.width && max_area_bb.width < 200){
+                                console.log("x",max_area_bb.x,"y",max_area_bb.y,"W",max_area_bb.width,"H",max_area_bb.height);
+                                console.log("CAPTURED!!");
+                            }
+                        }
                     }
                     //cv.imshow("canvasOutput", src);
                     //cv.imshow("canvasOutput", dst_gray);
@@ -304,6 +315,7 @@
                     
                     cv.imshow("canvasOutput", src_clone);
                     src_clone.delete(); 
+                    src_user.delete();
                     dst_gray.delete(); 
                     dst_thresh.delete(); 
                     dst_cont.delete();
