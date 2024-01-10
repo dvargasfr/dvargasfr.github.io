@@ -49,7 +49,7 @@
 
   <body>
     <div>
-        <video id="videoInput"></video> 
+        <video id="videoInput" style="width:100%"></video> 
         <canvas id="canvasUser"></canvas>
         <canvas id="canvasFilter"></canvas>
         <canvas id="canvasThreshold"></canvas>
@@ -100,7 +100,7 @@
             //modalImg.src = "./logo192.png";
 
             let src_to_crop = cv.imread('canvasOutput');
-            let rectangle = new cv.Rect(200, 200, 200, 200); //rect = new cv.Rect(x, y, width, height);
+            let rectangle = new cv.Rect(100, 100, 300, 250); //rect = new cv.Rect(x, y, width, height);
             let cropped_image = src_to_crop.roi(rectangle);
             cv.imshow("canvasCropped", cropped_image);
             var close = document.getElementsByClassName("close")[0];
@@ -208,8 +208,8 @@
 
         let video = document.getElementById("videoInput");
         if(video){
-            video.width = 480;
-            video.height = 640;
+            video.width = 640;
+            video.height = 480;
             //width = 640;
             //height = 480;
             navigator.mediaDevices.getUserMedia({   audio: false,
@@ -222,20 +222,22 @@
             .then(function (stream) {
                 video.srcObject = stream;
                 video.play();
+                console.log(stream.width)
             
                 let test = new cv.Mat();
                 //let src = new cv.Mat(height, width, cv.CV_8UC4);
                 //let dst = new cv.Mat(height, width, cv.CV_8UC1);
+                let cap = new cv.VideoCapture(video);
                 let src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
                 let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
-                let cap = new cv.VideoCapture(video);
+                
                 const FPS = 30;
                 function processVideo() {
                     let src_clone = src.clone();
                     let src_user = src.clone();
                     let begin = Date.now();
                     cap.read(src);
-                    cv.rectangle(src_user, new cv.Point(100, 100), new cv.Point(300, 400), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
+                    cv.rectangle(src_user, new cv.Point(100, 100), new cv.Point(400, 350), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
                     
                     cv.imshow("canvasUser", src_user);
                     //cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
@@ -254,11 +256,13 @@
                     /* Use cv.ADAPTIVE_THRESH_GAUSSIAN_C or cv.ADAPTIVE_THRESH_MEAN_C */
                     //cv.adaptiveThreshold(dst_gray, dst_thresh, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY_INV, 7, 2);
                     
+                    /*
                     cv.inRange(dst_gray, 
                         new cv.Mat(dst_gray.rows, dst_gray.cols, dst_gray.type(), [100, 100, 100, 0]), 
                         new cv.Mat(dst_gray.rows, dst_gray.cols, dst_gray.type(), [255, 250, 250, 255]),  
                         dst_thresh);
                     cv.imshow("canvasFilter", dst_thresh);
+                    */
 
                     cv.threshold(dst_gray, dst_thresh, 100, 255, cv.THRESH_BINARY);
                     cv.imshow("canvasThreshold", dst_thresh);
@@ -303,9 +307,10 @@
                         cv.rectangle(src_clone, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(0,0,255,255), 2, cv.LINE_AA, 0);
 
                         if(max_area_bb.x > 100){// &&  280 < max_area_bb.width && max_area_bb.width < 300){
-                            if (max_area_bb.y > 100 && 180 < max_area_bb.width && max_area_bb.width < 200){
+                            if (max_area_bb.y > 100 && 280 < max_area_bb.width && max_area_bb.width < 300){
                                 console.log("x",max_area_bb.x,"y",max_area_bb.y,"W",max_area_bb.width,"H",max_area_bb.height);
                                 console.log("CAPTURED!!");
+                                takePicture();
                             }
                         }
                     }
