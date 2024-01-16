@@ -43,13 +43,32 @@
             text-decoration: none;
             cursor: pointer;
         }
+
+        video {
+            width: 100%;
+            height: 100%;
+            background: rgba(200, 0, 0, 0.2);
+        }
+
+        .canvasuser {
+            /*
+            margin: auto;
+            display: block;
+            */
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 10;
+            background-color:rgba(255, 0, 0, 0.5);
+        }
     </style>
   </head>
 
   <body>
     <div>
-        <video id="videoInput" style="width:100%"></video> 
-        <canvas id="canvasUser" style="margin: auto;display: block;"></canvas>
+        <!--video id="videoInput" onplay="resize_canvas(this)"></video--> 
+        <video id="videoInput"></video> 
+        <canvas id="canvasUser" class="canvasuser"></canvas>
         <!--canvas id="canvasFilter" style="margin: auto;display: block;"></canvas-->
         <canvas id="canvasThreshold" style="margin: auto;display: block;"></canvas>
         <canvas id="canvasOutput" style="margin: auto;display: block;"></canvas>
@@ -76,6 +95,22 @@
     <script async src="../src/opencv.js" type="text/javascript"></script>
     <script>
 
+        function resize_canvas(element)
+        {
+            console.log("element.offsetWidth",element.offsetWidth);
+            console.log("element.videoWidth",element.videoWidth);
+            console.log("element.offsetHeight",element.offsetHeight);
+            console.log("element.getBoundingClientRect().height",element.getBoundingClientRect().height);
+            var w = element.offsetWidth;
+            var h = element.offsetHeight;
+            var canvasuser = document.getElementById("canvasUser");
+            canvasuser.width = w;
+            canvasuser.height = h;
+            let canvas_src = new cv.Mat(canvasuser.height, canvasuser.width, cv.CV_8UC4);
+            cv.rectangle(canvas_src, new cv.Point(150, 50), new cv.Point(710, 430), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
+            cv.imshow("canvasUser", canvas_src);
+        }
+
         function takePicture(){
             var modal = document.getElementById("myModal");
             var modalCanvas = document.getElementById("canvasCropped");
@@ -93,20 +128,35 @@
         }
 
         let video = document.getElementById("videoInput");
+
+        video.onplaying = function () {
+            var width = video.videoWidth
+            var height = video.videoHeight
+            console.log("video dimens loaded w="+width+" h="+height)
+
+            var canvasuser = document.getElementById("canvasUser");
+            canvasuser.width = width;
+            canvasuser.height = height;
+            let canvas_src = new cv.Mat(canvasuser.height, canvasuser.width, cv.CV_8UC4);
+            cv.rectangle(canvas_src, new cv.Point(150, 50), new cv.Point(710, 430), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
+            cv.imshow("canvasUser", canvas_src);
+        }
+        
+
         if(video){
-            video.width = 860;
-            video.height = 480;
+            //video.width = 860;
+            //video.height = 480;
             navigator.mediaDevices.getUserMedia({   audio: false,
                                                     video: { 
                                                         facingMode:"environment",
-                                                        width: { min: 1024, ideal: 1280, max: 1920 },
-                                                        height: { min: 576, ideal: 720, max: 1080 }, 
+                                                        width: { min: 1280, ideal: 1920, max: 2560 },
+                                                        height: { min: 720, ideal: 1080, max: 1440 }, 
                                                     }
                                                 })
             .then(function (stream) {
                 video.srcObject = stream;
                 video.play();
-                console.log(stream.width)
+                
             
                 let test = new cv.Mat();
                 let cap = new cv.VideoCapture(video);
@@ -122,9 +172,9 @@
 
                     // user template
                     // 860 x 480;
-                    cv.rectangle(src_user, new cv.Point(150, 50), new cv.Point(710, 430), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
+                    //cv.rectangle(src_user, new cv.Point(150, 50), new cv.Point(710, 430), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
                     
-                    cv.imshow("canvasUser", src_user);
+                    //cv.imshow("canvasUser", src_user);
                     //cv.cvtColor(src, dst, cv.COLOR_RGBA2GRAY);
                     //cv.rectangle(src, new cv.Point(200, 200), new cv.Point(400, 400), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
                     
