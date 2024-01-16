@@ -55,11 +55,7 @@
             background: rgba(200, 0, 0, 0.2);
         }
 
-        .canvasuser {
-            /*
-            margin: auto;
-            display: block;
-            */
+        .canvas-scan {
             position: absolute;
             top: 0;
             left: 0;
@@ -74,7 +70,7 @@
         <!--video id="videoInput" onplay="resize_canvas(this)"></video--> 
         <video id="videoInput"></video> 
         <div id="debugdiv" style="position:fixed"></div>
-        <canvas id="canvasUser" class="canvasuser"></canvas>
+        <canvas id="canvasScan" class="canvas-scan"></canvas>
         <!--canvas id="canvasFilter" style="margin: auto;display: block;"></canvas-->
         <canvas id="canvasThreshold" style="margin: auto;display: block;"></canvas>
         <canvas id="canvasOutput" style="margin: auto;display: block;"></canvas>
@@ -100,9 +96,6 @@
     <!--script src="src/index.js"></script-->
     <script async src="../src/opencv.js" type="text/javascript"></script>
     <script>
-
-        var _video_width = 0;
-        var _video_height = 0;
         /*
         function resize_canvas(element)
         {
@@ -124,6 +117,8 @@
         }
         */
 
+        let _video_width = 0;
+        let _video_height = 0;
         let video = document.getElementById("videoInput");
 
         video.onplaying = function () {
@@ -138,21 +133,31 @@
             console.log("video dimens loaded w="+_video_width+" h="+_video_height);
             var debugdiv = document.getElementById("debugdiv");
             debugdiv.style.top = _video_height + 20 + "px";
-            console.log("debugdiv.style.top",debugdiv.style.top);
             debugdiv.innerHTML = _video_width + " x " + _video_height;
             //video.style.width = _video_width;
             //video.style.height = _video_height;
 
-            var canvasuser = document.getElementById("canvasUser");
-            canvasuser.width = _video_width;
-            canvasuser.height = _video_height;
-            let canvas_src = new cv.Mat(canvasuser.height, canvasuser.width, cv.CV_8UC4);
-            cv.rectangle(canvas_src, new cv.Point(150, 50), new cv.Point(710, 430), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
-            cv.imshow("canvasUser", canvas_src);
+            var canvas_scan = document.getElementById("canvasScan");
+            canvas_scan.width = _video_width;
+            canvas_scan.height = _video_height;
+            let canvas_scan_src = new cv.Mat(canvas_scan.height, canvas_scan.width, cv.CV_8UC4);
+            //Selecciona el lado menor
+            let orientation = _video_width < _video_height ? "portrait" : "landscape";
+            console.log("orientation", orientation);
+            //if (orientation == "landscape"){
+                let detect_w = _video_width*0.8;
+                let detect_h = detect_w/1.5;
+                let tl_corner_x = _video_width*0.1;
+                let tl_corner_y = (_video_height-detect_h)/2;
+                let tl_corner = new cv.Point(tl_corner_x, tl_corner_y);
+                let br_corner = new cv.Point(tl_corner_x+detect_w, tl_corner_y+detect_h);
+                cv.rectangle(canvas_scan_src, tl_corner, br_corner, new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
+
+            //cv.rectangle(canvas_scan_src, new cv.Point(150, 50), new cv.Point(710, 430), new cv.Scalar(0,255,0,255), 2, cv.LINE_AA, 0);
+            cv.imshow("canvasScan", canvas_scan_src);
 
             let cap = new cv.VideoCapture(video);
             console.log("aaa - ",video.offsetWidth);
-            //while(_video_height === undefined){};
             console.log("bbb - ", _video_height);
             let src = new cv.Mat(_video_height, _video_width, cv.CV_8UC4);
             console.log("ccc");
@@ -164,6 +169,7 @@
                 let src_user = src.clone();
                 let begin = Date.now();
                 cap.read(src);
+                console.log("ddd");
 
                 // user template
                 // 860 x 480;
