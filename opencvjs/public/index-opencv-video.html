@@ -8,7 +8,7 @@
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
+            /*padding-top: 100px;*/ /* Location of the box */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
@@ -52,7 +52,6 @@
             position: absolute;
             top: 0;
             left: 0;
-            z-index: 10;
         }
 
         .canvas-detect {
@@ -80,12 +79,12 @@
         <div id="debugdiv" style="position:fixed"></div>
         <canvas id="canvasScan" class="canvas-scan"></canvas>
         <canvas id="canvasThreshold" class="canvas-dev"></canvas>
-        <canvas id="canvasOutput" style="margin:auto; display:block;"></canvas>
+        <!--canvas id="canvasOutput" style="margin:auto; display:block;"></canvas-->
         <canvas id="canvasDetect" class="canvas-detect"></canvas>
         <canvas id="canvasDetectThreshold" class="canvas-dev"></canvas>
     </div>
     
-    <button type="button" onclick="takePicture()">Take picture</button>
+    <button type="button" style="position:absolute; bottom:0;" onclick="takePicture()">Take picture</button>
 
     <div id="myModal" class="modal">
         <span class="close">&times;</span>
@@ -96,6 +95,7 @@
     <script>
         let _video_width = 0;
         let _video_height = 0;
+        let screenshot = false;
         let video = document.getElementById("videoInput");
 
         navigator.mediaDevices.getUserMedia({   
@@ -223,13 +223,34 @@
                     cv.rectangle(canvas_detect_src, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(0,0,255,255), 2, cv.LINE_AA, 0);
                     cv.rectangle(canvas_detect_src, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(106,132,189,100), -1, cv.LINE_AA, 0);
 
-                    if(max_area_bb.x > 150){
-                        if (max_area_bb.y > 50 && 520 < max_area_bb.width && max_area_bb.width < 540){
-                            takePicture();
+                    if(!screenshot){
+                        // Calcula que la posicion y dimensiones de la zona detectada esta dentro de la zona de enfoque
+                        if (max_area_bb.x >= tl_corner_x && max_area_bb.y >= tl_corner_y){
+                            if(detect_w*0.95 <= max_area_bb.width && max_area_bb.width <= detect_w){
+                                screenshot = true;
+                                //if(detect_h*0.95 <= max_area_bb.height && max_area_bb.height <= detect_h){
+                                    //takePicture(tl_corner_x, tl_corner_y, detect_w, detect_h);
+                                //}
+                                var modal = document.getElementById("myModal");
+                                var modalCanvas = document.getElementById("canvasCropped");
+                                modalCanvas.width = _video_width;
+                                modalCanvas.height = _video_height;
+                                modal.style.display = "block";
+                                
+                                let rectangle = new cv.Rect(tl_corner_x, tl_corner_y, detect_w, detect_h);
+                                let cropped_image = src.roi(rectangle);
+                                cv.imshow("canvasCropped", cropped_image);
+                                
+                                var close = document.getElementsByClassName("close")[0];
+                                close.onclick = function() {
+                                    modal.style.display = "none";
+                                    screenshot = false;
+                                }
+                            }
                         }
                     }
                 }
-
+                
                 cv.imshow("canvasDetect", canvas_detect_src);
                 cv.imshow("canvasDetectThreshold", canvas_detect_src);
                 
@@ -248,15 +269,19 @@
             setTimeout(processVideo, 0);
         }
 
-        function takePicture(){
+        function takePicture(corner_x, corner_y, w, h){
             var modal = document.getElementById("myModal");
             var modalCanvas = document.getElementById("canvasCropped");
             modal.style.display = "block";
 
-            let src_to_crop = cv.imread('canvasOutput');
+            //let src_to_crop = cv.imread('canvasDetect');
+            /*
             let rectangle = new cv.Rect(150, 50, 560, 380); //rect = new cv.Rect(x, y, width, height);
             let cropped_image = src_to_crop.roi(rectangle);
             cv.imshow("canvasCropped", cropped_image);
+            */
+            //modalCanvas.getContext("2d").drawImage(video, 0, 0, 300, 300, 0, 0, 300, 300);
+            modalCanvas.getContext("2d").drawImage(video, corner_x, corner_y, w, h);
             var close = document.getElementsByClassName("close")[0];
 
             close.onclick = function() { 
