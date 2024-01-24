@@ -96,6 +96,7 @@
         let _video_width = 0;
         let _video_height = 0;
         let screenshot = false;
+        const dni_aspect_ratio = 85.6/53.98;
         let video = document.getElementById("videoInput");
 
         navigator.mediaDevices.getUserMedia({   
@@ -376,7 +377,8 @@
                                         var modal = document.getElementById("myModal");
                                         var modalCanvas = document.getElementById("canvasCropped");
                                         modalCanvas.width = _video_width;
-                                        modalCanvas.height = _video_height;
+                                        //modalCanvas.height = _video_height;
+                                        modalCanvas.height = _video_width/dni_aspect_ratio;
                                         modal.style.display = "block";
 
                                         let dst_persp = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
