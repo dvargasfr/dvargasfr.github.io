@@ -1,0 +1,68 @@
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0);
+    background-color: rgba(0,0,0,0.9);
+}
+
+.modal-content {
+    display: block;
+    width: 100%;
+    position: fixed;
+    top: 30%;
+    margin: auto;
+    
+}
+
+.close {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+    color: #f1f1f1;
+    font-size: 40px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.close:hover,
+.close:focus {
+    color: #bbb;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+video {
+    position: absolute;
+    left: 0;
+    top: 0;
+    background: rgba(241, 26, 73, 0.89);
+}
+
+.canvas-scan {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.canvas-detect {
+    position: absolute;
+    top:0;
+}
+
+.canvas-threshold {
+    position: relative;
+    top: 800px;
+    left: 0px;
+}
+
+.canvas-dev {
+    position: absolute;
+    top: 800px;
+    left: 0px;
+}
