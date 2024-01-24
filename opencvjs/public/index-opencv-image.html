@@ -4,12 +4,11 @@
     <title>opencv.js sandbox</title>
     <meta charset="UTF-8" />
     <style>
-        /* The Modal (background) */
         .modal {
             display: none; /* Hidden by default */
             position: fixed; /* Stay in place */
             z-index: 1; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
+            /*padding-top: 100px;*/ /* Location of the box */
             left: 0;
             top: 0;
             width: 100%; /* Full width */
@@ -19,30 +18,57 @@
             background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
         }
 
-        /* Modal Content (image) */
         .modal-content {
             margin: auto;
             display: block;
-            width: 80%;
-            max-width: 700px;
+            width: 100%;
         }
 
-        /* The Close Button */
         .close {
-        position: absolute;
-        top: 15px;
-        right: 35px;
-        color: #f1f1f1;
-        font-size: 40px;
-        font-weight: bold;
-        transition: 0.3s;
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
         }
 
         .close:hover,
         .close:focus {
-        color: #bbb;
-        text-decoration: none;
-        cursor: pointer;
+            color: #bbb;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        video {
+            position: absolute;
+            left: 0;
+            top: 0;
+            background: rgba(241, 26, 73, 0.89);
+        }
+
+        .canvas-scan {
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+
+        .canvas-detect {
+            position: absolute;
+            top:0;
+        }
+
+        .canvas-threshold {
+            position: relative;
+            top: 800px;
+            left: 0px;
+        }
+
+        .canvas-dev {
+            position: absolute;
+            top: 800px;
+            left: 0px;
         }
     </style>
   </head>
@@ -52,11 +78,13 @@
         <!--video id="videoInput"></video--> 
         <img id="imageSrc" alt="No Image" />
         <div class="caption">imageSrc <input type="file" id="fileInput" name="file" /></div>
-        <canvas id="canvasOutputGray"></canvas>
+        <!--canvas id="canvasOutputGray"></canvas-->
         <canvas id="canvasOutputThreshold"></canvas>
-        <canvas id="canvasOutputCanny"></canvas>
+        <!--canvas id="canvasOutputCanny"></canvas-->
         <canvas id="canvasOutputG"></canvas>
         <canvas id="canvasOutputCropped"></canvas>
+        <canvas id="canvasOutputPersp"></canvas>
+        
     </div>
     
     <!--button type="button" onclick="processPicture()">Take picture</button-->
@@ -64,10 +92,10 @@
 
     <div id="myModal" class="modal">
         <span class="close">&times;</span>
-        <img class="modal-content" id="img01">
+        <canvas id="canvasCropped" class="modal-content"></canvas>
     </div>
 
-    <!--script src="src/index.js"></script-->
+    <script async src="../src/opencv.js" type="text/javascript"></script>
     <script>
         let src;
         let imgElement = document.getElementById('imageSrc');
@@ -101,134 +129,163 @@
             cv.GaussianBlur(src_clone, src_clone, ksize, 0, 0, cv.BORDER_DEFAULT);
             let dst_gray = new cv.Mat();
             cv.cvtColor(src_clone, dst_gray, cv.COLOR_BGR2GRAY, 0);
-            cv.imshow('canvasOutputGray', dst_gray);
-
+            //cv.imshow('canvasOutputGray', dst_gray);
 
             /* THRESHOLD */
             let dst_thresh = new cv.Mat();
-            //cv.threshold(dst_gray, dst_thresh, 90, 255, cv.THRESH_BINARY + cv.THRESH_OTSU);
-            // cv.threshold(dst_gray, dst_thresh, 60, 70, cv.THRESH_BINARY);
-
-            // Use cv.ADAPTIVE_THRESH_GAUSSIAN_C or cv.ADAPTIVE_THRESH_MEAN_C
-            //cv.adaptiveThreshold(dst_gray, dst_thresh, 255, cv.ADAPTIVE_THRESH_MEAN_C, cv.THRESH_BINARY_INV, 7, 2);
-           
-            //cv.Canny(dst_gray, dst_thresh, 100, 200, 3, false);
-            cv.inRange(dst_gray, 
-                        new cv.Mat(dst_gray.rows, dst_gray.cols, dst_gray.type(), [100, 100, 100, 0]), 
-                        new cv.Mat(dst_gray.rows, dst_gray.cols, dst_gray.type(), [255, 250, 250, 255]),  
-                        dst_thresh);
-            cv.imshow('canvasOutputThreshold', dst_thresh);
-            let M = cv.Mat.ones(5, 5, cv.CV_8U);
-            let anchor = new cv.Point(-1, -1);
-            //cv.dilate(dst_thresh, dst_thresh, M, anchor, 1, cv.BORDER_CONSTANT, cv.morphologyDefaultBorderValue());
-            //cv.Canny(dst_thresh, dst_thresh, 100, 255, 3, false);
-            //cv.Sobel(dst_thresh, dst_thresh, cv.CV_8U, 1, 0, 3, 1, 0); // Vertical
-            //cv.Laplacian(dst_gray, dst_thresh, cv.CV_8U); // Horizontal
-            //cv.Scharr(dst_gray, dst_thresh, cv.CV_8U, 1, 0); // Vertical
-            //cv.imshow('canvasOutputCanny', dst_thresh);
-            //cv.threshold(dst_gray, dst_thresh, 120, 200, cv.THRESH_OTSU);
-            //cv.threshold(src, dst_thresh, 145, 205, cv.THRESH_BINARY_INV);
-            
+            cv.threshold(dst_gray, dst_thresh, 100, 255, cv.THRESH_BINARY);
+            cv.imshow('canvasOutputThreshold', dst_thresh);  
 
             /* CONTOURS */
             let dst_cont = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
             let contours = new cv.MatVector();
             let hierarchy = new cv.Mat();
-            cv.findContours(dst_thresh, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+            //cv.findContours(dst_thresh, contours, hierarchy, cv.RETR_CCOMP, cv.CHAIN_APPROX_SIMPLE);
+            cv.findContours(dst_thresh, contours, hierarchy, cv.RETR_EXTERNAL, cv.CHAIN_APPROX_SIMPLE);
             let color = new cv.Scalar(255,0,0);
             console.log(contours);
             let max_per = 0;
             let max_per_i = 0;
             let max_area = 0;
             let max_area_i = 0;
-            for (let i = 0; i < contours.size(); ++i) {
-                perimeter = cv.arcLength(contours.get(i),true);
-                area = cv.contourArea(contours.get(i), false);
-                if (area > 3000){
-                    cv.drawContours(dst_cont, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
+            if (contours.size() > 0){
+                for (let i = 0; i < contours.size(); ++i) {
+                    area = cv.contourArea(contours.get(i), false);
+                    if (area > 3){
+                        // Get the maximum area contour 
+                        if (area > max_area){
+                            max_area = area;
+                            max_area_i = i;
+                        }
+                    }
                 }
-                
-                // Get the maximum perimeter contour 
-                if (perimeter > max_per && perimeter < 2000){
-                    max_per = perimeter;
-                    max_per_i = i;
-                }
-                // Get the maximum area contour 
-                if (area > max_area){
-                    max_area = area;
-                    max_area_i = i;
-                }
-                //let rect_contour = cv.boundingRect(contours.get(i));
-                //cv.rectangle(dst_cont, new cv.Point(rect_contour.x, rect_contour.y), new cv.Point(rect_contour.x + rect_contour.width, rect_contour.y + rect_contour.height), new cv.Scalar(0,255,0), 2, cv.LINE_AA, 0);
             }
-            console.log("perimeter",max_per,"contour #", max_per_i);
-            console.log("area",max_area,"contour #", max_area_i);
-            let cnt_per = contours.get(max_per_i);
+            let src_contours = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+
+            /* Bounding rectangle */
             let cnt_area = contours.get(max_area_i);
-            let rect_per = cv.boundingRect(cnt_per);
             let rect_area = cv.boundingRect(cnt_area);
-            let point1_per = new cv.Point(rect_per.x, rect_per.y);
-            let point2_per = new cv.Point(rect_per.x + rect_per.width, rect_per.y + rect_per.height);
             let point1_area = new cv.Point(rect_area.x, rect_area.y);
             let point2_area = new cv.Point(rect_area.x + rect_area.width, rect_area.y + rect_area.height);
-            cv.rectangle(dst_cont, point1_per, point2_per, new cv.Scalar(0,255,0), 2, cv.LINE_AA, 0);
-            cv.rectangle(dst_cont, point1_area, point2_area, new cv.Scalar(0,0,255), 15, cv.LINE_AA, 0);
+            //cv.rectangle(dst_cont, point1_area, point2_area, new cv.Scalar(0,0,255), 15, cv.LINE_AA, 0);
+            cv.rectangle(src_contours, point1_area, point2_area, new cv.Scalar(0,0,255), 15, cv.LINE_AA, 0);
 
+            //console.log("aaa");
+            //let matVec = new cv.MatVector();
+            //console.log("bbb");
+            //matVec.push_back(contours.get(max_area_i));
+            //console.log("ccc - matVec:",matVec);
+            
+            //cv.drawContours(src_contours, contours, max_area_i, new cv.Scalar(255,0,0,255), 1, cv.LINE_8, hierarchy, 100);
+            console.log("ddd - contours.size()",contours.size());
             let rotatedRect = cv.minAreaRect(cnt_area);
             let vertices = cv.RotatedRect.points(rotatedRect);
             for (let i = 0; i < 4; i++) {
-                cv.line(dst_cont, vertices[i], vertices[(i + 1) % 4], new cv.Scalar(155,155,100), 2, cv.LINE_AA, 0);
+                cv.line(src_contours, vertices[i], vertices[(i + 1) % 4], new cv.Scalar(255,0,0), 2, cv.LINE_AA, 0);
             }
 
-            /*
-            console.log("max:", max);
-            console.log("max_i:", max_i);
-            console.log("contours.get(max_i):", contours.get(max_i));
-            let matVec = new cv.MatVector();
-            matVec.push_back(contours.get(max_i));
-            console.log("matVec.size()",matVec.size());
-            console.log("matVec.get(0)",matVec.get(0));
-            cv.drawContours(dst_cont, matVec, 0, color, 1, cv.LINE_8, hierarchy, 100);
-            console.log("max:", max);
-            */
-            cv.imshow('canvasOutputG', dst_cont);
+            /* Aprox poly */
+            let poly = new cv.MatVector();
+            let tmp = new cv.Mat();
+            let cnt = contours.get(max_area_i);
+            cv.approxPolyDP(cnt, tmp, 3, true);
+            console.log("tmp",tmp);
+            poly.push_back(tmp);
+            console.log("poly",poly);
+            console.log("poly.size()",poly.size());
+            //cv.drawContours(src_contours, poly, -1, new cv.Scalar(0,255,0,255), 1, cv.LINE_8, hierarchy, 0);
+            let min_dist_tl = 10000;
+            let min_dist_tr = 10000;
+            let min_dist_bl = 10000;
+            let min_dist_br = 10000;
+            let src_h = src.rows;
+            let src_w = src.cols;
+            let min_x_tl, min_y_tl, min_x_tr, min_y_tr, min_x_bl, min_y_bl, min_x_br, min_y_br;
+            let tl_x = 10000;
+            let tr_x = 0;
+            let bl_x = 10000;
+            let br_x = 0;
+ 
+            for (let i = 0; i < contours.get(max_area_i).rows; i++) {
+                let startPoint = new cv.Point(contours.get(max_area_i).data32S[i * 4], contours.get(max_area_i).data32S[i * 4 + 1]);
+                let endPoint = new cv.Point(contours.get(max_area_i).data32S[i * 4 + 2], contours.get(max_area_i).data32S[i * 4 + 3]);
 
-            //let cropped_image = src.roi(rect_area);
-            //cv.imshow('canvasOutputCropped', cropped_image);
-        }
+                cv.line(src_contours, startPoint, endPoint, new cv.Scalar(255,255,0), 2, cv.LINE_AA, 0);
+                
+                // Min distance from every corner
+                let dist_tl = Math.sqrt(Math.pow((startPoint.x), 2) + Math.pow((startPoint.y),2));
+                let dist_tr = Math.sqrt(Math.pow((startPoint.x - src_w), 2) + Math.pow((startPoint.y),2));
+                let dist_bl = Math.sqrt(Math.pow((startPoint.x), 2) + Math.pow((startPoint.y - src_h),2));
+                let dist_br = Math.sqrt(Math.pow((startPoint.x - src_w), 2) + Math.pow((startPoint.y - src_h),2));
 
-        let video = document.getElementById("videoInput");
-        if(video){
-            video.width = 640;
-            video.height = 480;
-            navigator.mediaDevices
-            .getUserMedia({ video: true, audio: false })
-            .then(function (stream) {
-                video.srcObject = stream;
-                video.play();
+                if (dist_tl > 0 && dist_tl < min_dist_tl){
+                    min_dist_tl = dist_tl;
+                    min_x_tl = startPoint.x;
+                    min_y_tl = startPoint.y;
+                }
+                if (dist_tr > 0 && dist_tr < min_dist_tr){
+                    min_dist_tr = dist_tr;
+                    min_x_tr = startPoint.x;
+                    min_y_tr = startPoint.y;
+                }
+                if (dist_bl > 0 && dist_bl < min_dist_bl){
+                    min_dist_bl = dist_bl;
+                    min_x_bl = startPoint.x;
+                    min_y_bl = startPoint.y;
+                }
+                if (dist_br > 0 && dist_br < min_dist_br){
+                    min_dist_br = dist_br;
+                    min_x_br = startPoint.x;
+                    min_y_br = startPoint.y;
+                }
 
-                src = new cv.Mat(video.height, video.width, cv.CV_8UC4);
-                //let dst = new cv.Mat(video.height, video.width, cv.CV_8UC1);
-                let cap = new cv.VideoCapture(video);
-
-                const FPS = 30;
-                function processVideo() {
-                    try {
-                        let begin = Date.now();
-                        cap.read(src);
-                        let delay = 1000 / FPS - (Date.now() - begin);
-                        setTimeout(processVideo, delay);
-                    } catch (err) {
-                        console.error(err);
+                // More sided points from up and bottom 
+                // Up
+                if(startPoint.y <= rect_area.y + 50){
+                    if(startPoint.x < tl_x && startPoint.x > 0){
+                        tl_x = startPoint.x;
+                        console.log("tl_x",tl_x);
+                    }
+                    if(startPoint.x > tr_x){
+                        tr_x = startPoint.x;
                     }
                 }
-                setTimeout(processVideo, 0);
-            })
-            .catch(function (err) {
-                console.log("An error occurred! " + err);
-            });
+                // Bottom
+                if(startPoint.y >= rect_area.height - 5){
+                    if(startPoint.x < bl_x && startPoint.x > 0){
+                        bl_x = startPoint.x;
+                    }
+                    if(startPoint.x > br_x){
+                        br_x = startPoint.x;
+                    }
+                }
+
+            }
+            cv.circle(src_contours, new cv.Point(tl_x,rect_area.y), 10, new cv.Scalar(255,0,0), -1);
+            cv.circle(src_contours, new cv.Point(tr_x,rect_area.y), 10, new cv.Scalar(0,255,0), -1);
+            cv.circle(src_contours, new cv.Point(bl_x,rect_area.y+rect_area.height), 10, new cv.Scalar(0,0,255), -1);
+            cv.circle(src_contours, new cv.Point(br_x,rect_area.y+rect_area.height), 10, new cv.Scalar(0,255,255), -1);
+
+            //TL
+            //cv.circle(src_contours, new cv.Point(170,38), 15, new cv.Scalar(0,255,0), -1);
+            //TR
+            //cv.circle(src_contours, new cv.Point(970,38), 15, new cv.Scalar(0,255,0), -1);
+            //BL
+            //cv.circle(src_contours, new cv.Point(80,501), 15, new cv.Scalar(0,255,0), -1);
+            //BR
+            //cv.circle(src_contours, new cv.Point(1150,501), 15, new cv.Scalar(0,255,0), -1);
+            
+            let dst_persp = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+            let dsize = new cv.Size(src.cols, src.rows);
+            //let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [173,45, 970,40, 80,501, 1150,490]); //tl, tr, bl, br
+            let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [tl_x,rect_area.y, tr_x,rect_area.y, bl_x,rect_area.y+rect_area.height, br_x,rect_area.y+rect_area.height]);
+            let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, src_w, 0, 0, src_h, src_w, src_h]);
+            console.log(src.cols, src.rows);
+            let M = cv.getPerspectiveTransform(srcTri, dstTri);
+            cv.warpPerspective(src, dst_persp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+            cv.imshow('canvasOutputPersp', dst_persp);
+            cv.imshow('canvasOutputG', src_contours);
         }
     </script>
-    <script async src="../src/opencv.js" type="text/javascript"></script>
   </body>
 </html>

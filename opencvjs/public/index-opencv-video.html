@@ -206,45 +206,198 @@
                 if (contours.size() > 0){
                     for (let i = 0; i < contours.size(); ++i) {
                         area = cv.contourArea(contours.get(i), false);
-                        if (area > 3){
-                            //cv.drawContours(dst_cont, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
-                            // Get the maximum area contour 
-                            if (area > max_area){
-                                max_area = area;
-                                max_area_i = i;
-                            }
+                        //cv.drawContours(dst_cont, contours, i, color, 1, cv.LINE_8, hierarchy, 100);
+                        // Get the maximum area contour 
+                        if (area > max_area){
+                            max_area = area;
+                            max_area_i = i;
                         }
                     }
 
+                    /*
                     let max_area_contour = contours.get(max_area_i);
                     let max_area_bb = cv.boundingRect(max_area_contour);
                     let max_area_bb_p1 = new cv.Point(max_area_bb.x, max_area_bb.y);
                     let max_area_bb_p2 = new cv.Point(max_area_bb.x + max_area_bb.width, max_area_bb.y + max_area_bb.height);
                     cv.rectangle(canvas_detect_src, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(0,0,255,255), 2, cv.LINE_AA, 0);
                     cv.rectangle(canvas_detect_src, max_area_bb_p1, max_area_bb_p2, new cv.Scalar(106,132,189,100), -1, cv.LINE_AA, 0);
-
+                    cv.circle(canvas_detect_src, area_center, 20, new cv.Scalar(255,0,0,255), -1);
+                    */
+                    /*
                     if(!screenshot){
                         // Calcula que la posicion y dimensiones de la zona detectada esta dentro de la zona de enfoque
                         if (max_area_bb.x >= tl_corner_x && max_area_bb.y >= tl_corner_y){
                             if(detect_w*0.95 <= max_area_bb.width && max_area_bb.width <= detect_w){
-                                screenshot = true;
-                                //if(detect_h*0.95 <= max_area_bb.height && max_area_bb.height <= detect_h){
-                                    //takePicture(tl_corner_x, tl_corner_y, detect_w, detect_h);
-                                //}
-                                var modal = document.getElementById("myModal");
-                                var modalCanvas = document.getElementById("canvasCropped");
-                                modalCanvas.width = _video_width;
-                                modalCanvas.height = _video_height;
-                                modal.style.display = "block";
-                                
-                                let rectangle = new cv.Rect(tl_corner_x, tl_corner_y, detect_w, detect_h);
-                                let cropped_image = src.roi(rectangle);
-                                cv.imshow("canvasCropped", cropped_image);
-                                
-                                var close = document.getElementsByClassName("close")[0];
-                                close.onclick = function() {
-                                    modal.style.display = "none";
-                                    screenshot = false;
+                                if(detect_h*0.85 <= max_area_bb.height && max_area_bb.height <= detect_h){
+                                    screenshot = true;
+                                    //if(detect_h*0.95 <= max_area_bb.height && max_area_bb.height <= detect_h){
+                                        //takePicture(tl_corner_x, tl_corner_y, detect_w, detect_h);
+                                    //}
+                                    var modal = document.getElementById("myModal");
+                                    var modalCanvas = document.getElementById("canvasCropped");
+                                    modalCanvas.width = _video_width;
+                                    modalCanvas.height = _video_height;
+                                    modal.style.display = "block";
+                                    
+                                    let rectangle = new cv.Rect(tl_corner_x, tl_corner_y, detect_w, detect_h);
+                                    let cropped_image = src.roi(rectangle);
+
+                                    // Process cropped image
+                                    let tl_x = 10000; let bl_x = 10000; let tr_x = 0; let br_x = 0; 
+                                    for (let i = 0; i < max_area_contour.rows; i++) {
+                                        let startPoint = new cv.Point(max_area_contour.data32S[i * 4], max_area_contour.data32S[i * 4 + 1]);
+                                        let endPoint = new cv.Point(max_area_contour.data32S[i * 4 + 2], max_area_contour.data32S[i * 4 + 3]);
+                                        if(startPoint.y <= max_area_bb.y + detect_h*0.15){
+                                            if(startPoint.x < tl_x && startPoint.x > 0){
+                                                tl_x = startPoint.x;
+                                                console.log("tl_x",tl_x);
+                                            }
+                                            if(startPoint.x > tr_x){
+                                                tr_x = startPoint.x;
+                                            }
+                                        }
+                                        // Bottom
+                                        if(startPoint.y >= max_area_bb.height - 5){
+                                            if(startPoint.x < bl_x && startPoint.x > 0){
+                                                bl_x = startPoint.x;
+                                            }
+                                            if(startPoint.x > br_x){
+                                                br_x = startPoint.x;
+                                            }
+                                        }
+                                    }
+                                    cv.circle(src, new cv.Point(tl_x,max_area_bb.y), 10, new cv.Scalar(255,0,0,255), -1);
+                                    cv.circle(src, new cv.Point(tr_x,max_area_bb.y), 10, new cv.Scalar(0,255,0,255), -1);
+                                    cv.circle(src, new cv.Point(bl_x,max_area_bb.y+max_area_bb.height), 10, new cv.Scalar(0,0,255,255), -1);
+                                    cv.circle(src, new cv.Point(br_x,max_area_bb.y+max_area_bb.height), 10, new cv.Scalar(0,255,255,255), -1);
+                                    /*
+                                    let dst_persp = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+                                    let dsize = new cv.Size(src.cols, src.rows);
+                                    //let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [173,45, 970,40, 80,501, 1150,490]); //tl, tr, bl, br
+                                    let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [tl_x,max_area_bb.y, tr_x,rect_area.y, bl_x,rect_area.y+rect_area.height, br_x,rect_area.y+rect_area.height]);
+                                    let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, src_w, 0, 0, src_h, src_w, src_h]);
+                                    console.log(src.cols, src.rows);
+                                    let M = cv.getPerspectiveTransform(srcTri, dstTri);
+                                    cv.warpPerspective(src, dst_persp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+                                    *//*
+                                    cv.imshow("canvasCropped", src);
+                                    //cv.imshow("canvasCropped", cropped_image);
+                                    
+                                    var close = document.getElementsByClassName("close")[0];
+                                    close.onclick = function() {
+                                        modal.style.display = "none";
+                                        screenshot = false;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    */
+
+
+                    let max_area_contour = contours.get(max_area_i);
+                    let max_area_rotrect = cv.minAreaRect(max_area_contour);
+                    let vertices = cv.RotatedRect.points(max_area_rotrect);
+                    const max_area_center = max_area_rotrect.center;
+                    for (let i = 0; i < 4; i++) {
+                        cv.line(canvas_detect_src, vertices[i], vertices[(i + 1) % 4], new cv.Scalar(255,0,0,255), 2, cv.LINE_AA, 0);
+                    }
+                    //cv.circle(canvas_detect_src, max_area_center, 20, new cv.Scalar(255,0,0,255), -1);
+
+                    let max_area_boundrect = cv.boundingRect(max_area_contour);
+                    let max_area_br_p1 = new cv.Point(max_area_boundrect.x, max_area_boundrect.y);
+                    let max_area_br_p2 = new cv.Point(max_area_boundrect.x + max_area_boundrect.width, max_area_boundrect.y + max_area_boundrect.height);
+                    cv.rectangle(canvas_detect_src, max_area_br_p1, max_area_br_p2, new cv.Scalar(0,0,255,255), 2, cv.LINE_AA, 0);
+
+                    if(!screenshot){
+                        if(max_area_rotrect.size.width >= max_area_boundrect.width*0.95) {
+                            if(max_area_rotrect.size.height >= max_area_boundrect.height*0.95) {
+                                if(detect_h*0.85 <= max_area_boundrect.height && max_area_boundrect.height <= detect_h){
+                                    if(max_area_boundrect.x >= tl_corner_x && max_area_boundrect.y >= tl_corner_y){
+                                        console.log("max_area_rotrect.size.width:", max_area_rotrect.size.width, "max_area_boundrect.width:", max_area_boundrect.width);
+                                        console.log("TAKE PICTURE!!");
+                                        screenshot = true;
+
+                                        let topLeftCorner;
+                                        let topLeftCornerDist = 0;
+
+                                        let topRightCorner;
+                                        let topRightCornerDist = 0;
+
+                                        let bottomLeftCorner;
+                                        let bottomLeftCornerDist = 0;
+
+                                        let bottomRightCorner;
+                                        let bottomRightCornerDist = 0;
+
+                                        for (let i = 0; i < max_area_contour.data32S.length; i+=2) {
+                                            const point = { x: max_area_contour.data32S[i], y: max_area_contour.data32S[i + 1] };
+                                            const dist = Math.sqrt(Math.pow((point.x - max_area_center.x), 2) + Math.pow((point.y - max_area_center.y), 2));
+                                            if (point.x < max_area_center.x && point.y < max_area_center.y) {
+                                                // top left
+                                                if (dist > topLeftCornerDist) {
+                                                    topLeftCorner = point;
+                                                    topLeftCornerDist = dist;
+                                                }
+                                            } else if (point.x > max_area_center.x && point.y < max_area_center.y) {
+                                                // top right
+                                                if (dist > topRightCornerDist) {
+                                                    topRightCorner = point;
+                                                    topRightCornerDist = dist;
+                                                }
+                                            } else if (point.x < max_area_center.x && point.y > max_area_center.y) {
+                                                // bottom left
+                                                if (dist > bottomLeftCornerDist) {
+                                                    bottomLeftCorner = point;
+                                                    bottomLeftCornerDist = dist;
+                                                }
+                                            } else if (point.x > max_area_center.x && point.y > max_area_center.y) {
+                                                // bottom right
+                                                if (dist > bottomRightCornerDist) {
+                                                    bottomRightCorner = point;
+                                                    bottomRightCornerDist = dist;
+                                                }
+                                            }
+                                        }
+                                        
+                                        /*
+                                        cv.circle(src, topLeftCorner, 10, new cv.Scalar(255,0,0,255), -1);
+                                        cv.circle(src, topRightCorner, 10, new cv.Scalar(0,255,0,255), -1);
+                                        cv.circle(src, bottomLeftCorner, 10, new cv.Scalar(0,0,255,255), -1);
+                                        cv.circle(src, bottomRightCorner, 10, new cv.Scalar(0,255,255,255), -1);
+                                        
+                                        console.log("tl - R", topLeftCorner, "tl dist", topLeftCornerDist);
+                                        console.log("tr - G", topRightCorner, "tr dist", topRightCornerDist);
+                                        console.log("bl - B", bottomLeftCorner, "bl dist", bottomLeftCornerDist);
+                                        console.log("br - GB", bottomRightCorner, "br dist", bottomRightCornerDist);
+                                        cv.drawContours(src, contours, max_area_i, new cv.Scalar(255,0,0,255), 5, cv.LINE_8, hierarchy, 0);
+                                        */
+
+                                        var modal = document.getElementById("myModal");
+                                        var modalCanvas = document.getElementById("canvasCropped");
+                                        modalCanvas.width = _video_width;
+                                        modalCanvas.height = _video_height;
+                                        modal.style.display = "block";
+
+                                        let dst_persp = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
+                                        let dsize = new cv.Size(src.cols, src.rows);
+                                        //let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [173,45, 970,40, 80,501, 1150,490]); //tl, tr, bl, br
+                                        let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [topLeftCorner.x,topLeftCorner.y, topRightCorner.x,topRightCorner.y, bottomLeftCorner.x,bottomLeftCorner.y, bottomRightCorner.x,bottomRightCorner.y]);
+                                        let dstTri = cv.matFromArray(4, 1, cv.CV_32FC2, [0, 0, src.cols, 0, 0, src.rows, src.cols, src.rows]);
+                                        console.log("src.cols, src.rows", src.cols, src.rows);
+                                        console.log("_video_width, _video_height", _video_width, _video_height);
+                                        let M = cv.getPerspectiveTransform(srcTri, dstTri);
+                                        cv.warpPerspective(src, dst_persp, M, dsize, cv.INTER_LINEAR, cv.BORDER_CONSTANT, new cv.Scalar());
+
+                                        cv.imshow("canvasCropped", dst_persp);
+                                        //cv.imshow("canvasCropped", cropped_image);
+                                        
+                                        var close = document.getElementsByClassName("close")[0];
+                                        close.onclick = function() {
+                                            modal.style.display = "none";
+                                            screenshot = false;
+                                        }
+                                    }
                                 }
                             }
                         }
