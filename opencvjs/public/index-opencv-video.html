@@ -186,7 +186,7 @@
                 */
 
                 cv.threshold(dst_gray, dst_thresh, 100, 255, cv.THRESH_BINARY);
-                cv.imshow("canvasThreshold", dst_thresh);
+                //cv.imshow("canvasThreshold", dst_thresh);
 
                 /* Dilate */
                 //let M = cv.Mat.ones(5, 5, cv.CV_8U);
@@ -405,7 +405,7 @@
                 }
                 
                 cv.imshow("canvasDetect", canvas_detect_src);
-                cv.imshow("canvasDetectThreshold", canvas_detect_src);
+                //cv.imshow("canvasDetectThreshold", canvas_detect_src);
                 
                 src_clone.delete(); 
                 canvas_detect_src.delete(); 
