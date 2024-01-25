@@ -301,7 +301,8 @@ video.onplaying = function () {
 
                                 cv.imshow("canvasCropped", dst_persp);
                                 //cv.imshow("canvasCropped", cropped_image);
-                                
+                                var debugmodal = document.getElementById("debugmodal");
+                                debugmodal.innerHTML = "Canvas: " + modalCanvas.width + "x" + modalCanvas.height + "\n Mat: " + dst_persp.size().width + "x" + dst_persp.size().height;
                                 var close = document.getElementsByClassName("close")[0];
                                 close.onclick = function() {
                                     modal.style.display = "none";
