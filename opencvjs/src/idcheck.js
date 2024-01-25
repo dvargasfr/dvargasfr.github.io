@@ -288,7 +288,8 @@ video.onplaying = function () {
                                 modal.style.display = "block";
 
                                 //let dst_persp = cv.Mat.zeros(src.rows, src.cols, cv.CV_8UC3);
-                                let dst_persp = new cv.Mat(modalCanvas.height, modalCanvas.width, cv.CV_8UC3);
+                                //let dst_persp = new cv.Mat(modalCanvas.height, modalCanvas.width, cv.CV_8UC3);
+                                let dst_persp = new cv.Mat(modalCanvas.width, modalCanvas.height, cv.CV_8UC3);
                                 let dsize = new cv.Size(src.cols, src.rows);
                                 //let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [173,45, 970,40, 80,501, 1150,490]); //tl, tr, bl, br
                                 let srcTri = cv.matFromArray(4, 1, cv.CV_32FC2, [topLeftCorner.x,topLeftCorner.y, topRightCorner.x,topRightCorner.y, bottomLeftCorner.x,bottomLeftCorner.y, bottomRightCorner.x,bottomRightCorner.y]);
