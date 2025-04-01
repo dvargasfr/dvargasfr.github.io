@@ -190,6 +190,8 @@ https://script.google.com/macros/s/AKfycbzk2CJcsZ-yvYN53Zi4JhQqQXVFiuJQJdgKtoA65
             // Si devuelve texto, usa response.text()
             const result = await response.json(); // o response.text()
 
+            print(result);
+
             if (result.success) {
                 showMessage('Alimento añadido correctamente.');
                 addFoodForm.reset(); // Limpiar formulario
