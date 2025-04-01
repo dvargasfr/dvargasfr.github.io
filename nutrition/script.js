@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURACIÓN ---
     const WEB_APP_URL = '\
-https://script.google.com/macros/s/AKfycbwKxBZ2l2Npfu6T9RoUTZRfJcIwJazUaTpYJgAw45hgMWaizeTL-eP2kCnSAxluP_GhWA/exec';    
+https://script.google.com/macros/s/AKfycbzwbzjj_ztXkNuF4WPlkmyqkK7HjiT5yH0tQoNDXL_Y1AI6DjSleJMPcQ9NH8NEZHjIiw/exec';  
 // --- SELECTORES DEL DOM ---
     const foodListContainer = document.getElementById('food-list');
     const filterInput = document.getElementById('filter-food');
