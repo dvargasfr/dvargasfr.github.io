@@ -7,42 +7,31 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <header>
-        <h1>Mi Seguimiento Nutricional</h1>
-    </header>
+    <button id="menu-button">☰ Menú</button>
+    <nav id="menu">
+        <ul>
+            <li id="menu-daily-summary">Resumen Diario</li>
+            <li id="menu-add-food">Añadir Alimento</li>
+            <li id="menu-record-meal">Registrar Comida</li>
+        </ul>
+    </nav>
 
     <main>
+        <header>
+            <h1>Control de Nutrición</h1>
+        </header>
 
-        <!-- 2. Sección para mostrar la lista de alimentos disponibles -->
-        <section aria-labelledby="available-foods-heading">
-            <h2 id="available-foods-heading">Alimentos Disponibles</h2>
-            <div>
-                <label for="filter-food">Filtrar por nombre:</label>
-                <input type="text" id="filter-food" placeholder="Buscar alimento...">
-            </div>
-            <div id="food-list">
-                <!-- La lista de alimentos se cargará aquí dinámicamente (p.ej., con JavaScript) -->
-                <p>Cargando alimentos...</p>
-                <!-- Ejemplo de cómo podría verse un elemento (esto sería generado por JS):
-                <div>
-                    <span>Manzana</span> -
-                    <span>Kcal: 52</span> |
-                    <span>Grasas: 0.2g</span> |
-                    <span>Carbs: 14g</span> |
-                    <span>Azúcares: 10g</span> |
-                    <span>Proteína: 0.3g</span>
-                    <button class="add-to-meal-btn" data-food-id="1">Añadir a comida</button>
-                </div>
-                -->
-            </div>
+        <section id="daily-summary" aria-labelledby="daily-summary-heading">
+            <h2 id="daily-summary-heading">Resumen Nutricional del Día</h2>
+            <div>Calorías: <span id="total-calories">0</span> kcal</div>
+            <div>Grasas: <span id="total-fats">0</span> g</div>
+            <div>Carbohidratos: <span id="total-carbs">0</span> g</div>
+            <div>Azúcares: <span id="total-sugars">0</span> g</div>
+            <div>Proteínas: <span id="total-protein">0</span> g</div>
         </section>
 
-        <hr> <!-- Separador visual opcional -->
-
-        <!-- 3. Sección para añadir un nuevo alimento -->
-        <section aria-labelledby="add-food-heading">
-            <h2 id="add-food-heading">Añadir Nuevo Alimento</h2>
+        <section id="add-food">
+            <h2>Añadir Nuevo Alimento</h2>
             <form id="add-food-form">
                 <div>
                     <label for="food-name">Nombre:</label>
@@ -72,11 +61,8 @@
             </form>
         </section>
 
-        <hr> <!-- Separador visual opcional -->
-
-        <!-- 4. Sección para registrar una comida -->
-        <section aria-labelledby="record-meal-heading">
-            <h2 id="record-meal-heading">Registrar Comida</h2>
+        <section id="record-meal">
+            <h2>Registrar Comida</h2>
             <div>
                 <label for="meal-type">Tipo de Comida:</label>
                 <select id="meal-type" required>
@@ -88,43 +74,25 @@
                 </select>
             </div>
 
-            <h3>Alimentos Seleccionados para esta Comida:</h3>
-            <div id="selected-foods">
-                <!-- Los alimentos seleccionados (por ejemplo, al hacer clic en "Añadir a comida" en la lista de arriba) se mostrarán aquí -->
-                <p>Ningún alimento seleccionado aún.</p>
-                 <!-- Ejemplo de cómo podría verse un elemento seleccionado (esto sería generado por JS):
-                <div>
-                    <span>Manzana</span>
-                    <button class="remove-from-meal-btn" data-food-instance-id="xyz">Quitar</button>
-                </div>
-                 -->
+            <div>
+                <label for="filter-food">Buscar Alimento:</label>
+                <input type="text" id="filter-food" placeholder="Escribe para filtrar...">
+            </div>
+            <div id="food-list">
+                <!-- Aquí se mostrará la lista de alimentos -->
             </div>
 
+            <div>
+                <h3>Alimentos Seleccionados:</h3>
+                <div id="selected-foods">
+                    <p>Ningún alimento seleccionado aún.</p>
+                </div>
+            </div>
             <button id="record-meal-button">Registrar Comida</button>
-        </section>
-
-        <hr> <!-- Separador visual opcional -->
-
-        <!-- 5. Sección para mostrar el total nutricional del día -->
-        <section aria-labelledby="daily-summary-heading">
-            <h2 id="daily-summary-heading">Resumen Nutricional del Día</h2>
-            <div>Total Kilocalorías: <span id="total-calories">0</span> kcal</div>
-            <div>Total Grasas: <span id="total-fats">0</span> g</div>
-            <div>Total Carbohidratos: <span id="total-carbs">0</span> g</div>
-            <div>Total Azúcares: <span id="total-sugars">0</span> g</div>
-            <div>Total Proteínas: <span id="total-protein">0</span> g</div>
         </section>
 
     </main>
 
-    <footer>
-        <!-- Puedes añadir información de pie de página si lo necesitas -->
-        <p>&copy; 2023 Mi Seguimiento Nutricional</p>
-    </footer>
-
-    <!-- Aquí iría el enlace a tu archivo JavaScript -->
-    <!-- <script src="app.js"></script> -->
     <script src="script.js"></script>
-
 </body>
 </html>

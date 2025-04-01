@@ -239,3 +239,56 @@ footer {
     font-size: 0.9em;
     color: #6c757d; /* Gris */
 }
+
+/* Estilos para el menú */
+#menu-button {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 100; /* Asegura que el botón esté por encima de todo */
+}
+
+#menu {
+    position: fixed;
+    top: 0;
+    left: -250px; /* Oculto fuera de la pantalla */
+    width: 250px;
+    height: 100%;
+    background-color: #343a40; /* Fondo oscuro */
+    color: white;
+    transition: left 0.3s ease; /* Animación suave */
+    z-index: 99; /* Menú por debajo del botón pero por encima del contenido */
+    padding-top: 60px; /* Espacio para el botón */
+}
+
+#menu.open {
+    left: 0; /* Mostrar el menú */
+}
+
+#menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#menu li {
+    padding: 10px 20px;
+    border-bottom: 1px solid #555;
+    cursor: pointer;
+}
+
+#menu li:hover {
+    background-color: #495057;
+}
+
+/* Ocultar secciones por defecto */
+#add-food,
+#record-meal {
+    display: none;
+}

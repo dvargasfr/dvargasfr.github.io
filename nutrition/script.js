@@ -24,6 +24,12 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
     const totalSugarsEl = document.getElementById('total-sugars');
     const totalProteinEl = document.getElementById('total-protein');
 
+    const menuButton = document.getElementById('menu-button');
+    const menu = document.getElementById('menu');
+    const dailySummarySection = document.getElementById('daily-summary');
+    const addFoodSection = document.getElementById('add-food');
+    const recordMealSection = document.getElementById('record-meal');
+
     // --- ESTADO DE LA APLICACIÓN ---
     let allFoods = []; // Almacenará la lista completa de alimentos [{name: 'Manzana', ...}, ...]
     let selectedMealFoods = []; // Almacenará los nombres de los alimentos para la comida actual ['Manzana', 'Plátano']
@@ -424,6 +430,28 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
         }
     };
 
+    /**
+     * Muestra una sección y oculta las demás.
+     * @param {string} sectionId - El ID de la sección a mostrar.
+     */
+    const showSection = (sectionId) => {
+        dailySummarySection.style.display = 'none';
+        addFoodSection.style.display = 'none';
+        recordMealSection.style.display = 'none';
+
+        const sectionToShow = document.getElementById(sectionId);
+        if (sectionToShow) {
+            sectionToShow.style.display = 'block';
+        }
+    };
+
+    /**
+     * Abre o cierra el menú.
+     */
+    const toggleMenu = () => {
+        menu.classList.toggle('open');
+    };
+
     // --- EVENT LISTENERS ---
     filterInput.addEventListener('input', handleFilterFoods);
     addFoodForm.addEventListener('submit', handleAddFood);
@@ -435,12 +463,27 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
      // Event Delegation para botones "Quitar" en la lista de seleccionados
     selectedFoodsContainer.addEventListener('click', handleRemoveFoodFromMeal);
 
+    // --- EVENT LISTENERS PARA EL MENÚ ---
+    menuButton.addEventListener('click', toggleMenu);
+    document.getElementById('menu-daily-summary').addEventListener('click', () => {
+        showSection('daily-summary');
+        toggleMenu();
+    });
+    document.getElementById('menu-add-food').addEventListener('click', () => {
+        showSection('add-food');
+        toggleMenu();
+    });
+    document.getElementById('menu-record-meal').addEventListener('click', () => {
+        showSection('record-meal');
+        toggleMenu();
+    });
 
     // --- INICIALIZACIÓN ---
     const initializeApp = () => {
         fetchAndDisplayFoods();
         updateDailyNutrition();
-        renderSelectedFoods(); // Para mostrar el placeholder inicial
+        renderSelectedFoods();
+        showSection('daily-summary');
     };
 
     initializeApp();
