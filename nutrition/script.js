@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURACIÓN ---
     const WEB_APP_URL = '\
-https://script.google.com/macros/s/AKfycbzk2CJcsZ-yvYN53Zi4JhQqQXVFiuJQJdgKtoA651UjLKWWu8nNGSySSZinQBo3pF-DYA/exec';  
+https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWeRfliH80cugffw7UFBRjPW589qVP/exec';  
 // --- SELECTORES DEL DOM ---
     const foodListContainer = document.getElementById('food-list');
     const filterInput = document.getElementById('filter-food');
@@ -167,6 +167,52 @@ https://script.google.com/macros/s/AKfycbzk2CJcsZ-yvYN53Zi4JhQqQXVFiuJQJdgKtoA65
         addFoodButton.textContent = 'Añadiendo...';
 
         try {
+            const xhr = new XMLHttpRequest();
+            const requestPromise = new Promise((resolve, reject) => {
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            // Intentar parsear como JSON primero
+                            try {
+                                const result = JSON.parse(xhr.responseText);
+                                resolve(result);
+                            } catch (e) {
+                                // Si no es JSON, devolver el texto
+                                resolve({
+                                    success: true,
+                                    message: "Operación completada",
+                                    responseText: xhr.responseText
+                                });
+                            }
+                        } else {
+                            reject(new Error(`Error HTTP: ${xhr.status}`));
+                        }
+                    }
+                };
+                
+                xhr.onerror = function() {
+                    reject(new Error("Error de red"));
+                };
+            });
+            
+            // Abrir y enviar la solicitud
+            xhr.open('POST', `${WEB_APP_URL}?action=addFood`, true);
+            xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
+            xhr.send(JSON.stringify(foodData));
+            
+            const result = await requestPromise;
+            
+            console.log("Respuesta del servidor:", result);
+            
+            if (result.success) {
+                showMessage('Alimento añadido correctamente.');
+                addFoodForm.reset(); 
+                await fetchAndDisplayFoods(); 
+            } else {
+                throw new Error(result.error || 'Error desconocido al añadir alimento.');
+            }
+
+            /*
             const response = await fetch(`${WEB_APP_URL}?action=addFood`, {
                 redirect: "follow",
                 method: 'POST',
@@ -199,6 +245,7 @@ https://script.google.com/macros/s/AKfycbzk2CJcsZ-yvYN53Zi4JhQqQXVFiuJQJdgKtoA65
             } else {
                 throw new Error(result.error || 'Error desconocido al añadir alimento.');
             }
+                */
         } catch (error) {
             console.error('Error al añadir alimento:', error);
             showMessage(`Error al añadir alimento: ${error.message}`, true);
