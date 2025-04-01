@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURACIÓN ---
     const WEB_APP_URL = '\
-https://script.google.com/macros/s/AKfycbxl_z81XmLj6C4dPhaPOM529lEdkq8-LwVFanO3JBzeBkDPBTJ-AxR9NKdj2X5gtVLAvg/exec';  
+https://script.google.com/macros/s/AKfycbzTqOOUr8ZpKzKFrMuKvK73mn97zTznEgP8eFA24_vvbXnxh5VaQcMFxFUCPHMB11w2Cg/exec';  
 // --- SELECTORES DEL DOM ---
     const foodListContainer = document.getElementById('food-list');
     const filterInput = document.getElementById('filter-food');
@@ -168,9 +168,10 @@ https://script.google.com/macros/s/AKfycbxl_z81XmLj6C4dPhaPOM529lEdkq8-LwVFanO3J
 
         try {
             const response = await fetch(`${WEB_APP_URL}?action=addFood`, {
+                redirect: "follow",
                 method: 'POST',
                 headers: {
-                    'Content-Type': 'application/json',
+                    'Content-Type': "text/plain;charset=utf-8",
                 },
                 // Apps Script a menudo necesita que el payload esté en una estructura específica,
                 // A veces necesita redirigirse o ser texto plano. Ajusta según tu backend.
