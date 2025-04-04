@@ -3,7 +3,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     // --- CONFIGURACIÓN ---
     const WEB_APP_URL = '\
-https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWeRfliH80cugffw7UFBRjPW589qVP/exec';  
+https://script.google.com/macros/s/AKfycby6i_H4ZDNZzPQYxyuZRjAFsLWTZal13uKlV4h26P65yy2ij88iGmfJRRauyjGnbV8L6w/exec';  
 // --- SELECTORES DEL DOM ---
     const foodListContainer = document.getElementById('food-list');
     const filterInput = document.getElementById('filter-food');
@@ -64,7 +64,7 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
      * @param {Array} foodsToRender - Array de objetos de alimentos a mostrar
      */
     const renderFoodList = (foodsToRender) => {
-        foodListContainer.innerHTML = ''; // Limpiar lista actual
+        foodListContainer.innerHTML = '';
 
         if (!foodsToRender || foodsToRender.length === 0) {
             foodListContainer.innerHTML = '<p>No se encontraron alimentos o la lista está vacía.</p>';
@@ -72,14 +72,14 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
         }
 
         foodsToRender.forEach(food => {
-            // Solo necesitamos el nombre para esta vista según la descripción inicial,
-            // pero guardamos todo el objeto por si acaso o para futuras mejoras.
-            // Podríamos mostrar más detalles si quisiéramos.
-            console.log(food);
-            // print(food);
             const foodElement = document.createElement('div');
             foodElement.innerHTML = `
                 <span>${food.Nombre}</span>
+                <span>${food.Kilocalorias}</span> 
+                <span>${food.Grasas}</span>
+                <span>${food.Carbohidratos}</span>
+                <span>${food.Azucares}</span>
+                <span>${food.Proteinas}</span>
                 <button class="add-to-meal-btn" data-food-name="${food.Nombre}">Add</button>
             `;
             // Guardamos el objeto completo por si lo necesitamos al añadir
@@ -92,7 +92,7 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
      * Renderiza la lista de alimentos seleccionados para la comida actual
      */
     const renderSelectedFoods = () => {
-        selectedFoodsContainer.innerHTML = ''; // Limpiar
+        selectedFoodsContainer.innerHTML = '';
         if (selectedMealFoods.length === 0) {
             selectedFoodsContainer.innerHTML = '<p>Ningún alimento seleccionado aún.</p>';
             return;
@@ -217,41 +217,6 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
             } else {
                 throw new Error(result.error || 'Error desconocido al añadir alimento.');
             }
-
-            /*
-            const response = await fetch(`${WEB_APP_URL}?action=addFood`, {
-                redirect: "follow",
-                method: 'POST',
-                headers: {
-                    'Content-Type': "text/plain;charset=utf-8",
-                },
-                // Apps Script a menudo necesita que el payload esté en una estructura específica,
-                // A veces necesita redirigirse o ser texto plano. Ajusta según tu backend.
-                // Aquí asumimos que acepta JSON directamente en el body.
-                // Si usas doGet/doPost, Apps Script parseará esto automáticamente en e.postData.contents
-                 body: JSON.stringify(foodData),
-                // Alternativa si Apps Script espera texto plano:
-                // body: JSON.stringify(foodData),
-                // headers: {'Content-Type': 'text/plain;charset=utf-8'},
-                // mode: 'no-cors' // Puede ser necesario si hay problemas CORS y no se maneja en Apps Script
-            });
-
-            // IMPORTANTE: Las respuestas de Apps Script Web Apps después de un POST
-            // pueden ser redirecciones o texto plano. Ajusta cómo procesas la respuesta.
-            // Aquí asumimos que devuelve JSON con { success: true } o { error: 'mensaje' }
-            // Si devuelve texto, usa response.text()
-            const result = await response.json(); // o response.text()
-
-            print(result);
-
-            if (result.success) {
-                showMessage('Alimento añadido correctamente.');
-                addFoodForm.reset(); // Limpiar formulario
-                await fetchAndDisplayFoods(); // Recargar lista de alimentos
-            } else {
-                throw new Error(result.error || 'Error desconocido al añadir alimento.');
-            }
-                */
         } catch (error) {
             console.error('Error al añadir alimento:', error);
             showMessage(`Error al añadir alimento: ${error.message}`, true);
@@ -261,7 +226,6 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
              addFoodButton.textContent = 'Añadir Alimento';
         }
     };
-
 
     /**
      * Añade un alimento de la lista disponible a la lista de comida actual
@@ -315,45 +279,62 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
         recordMealButton.textContent = 'Registrando...';
 
         const mealPromises = selectedMealFoods.map(foodName => {
+            const foodDetails = allFoods.find(f => f.Nombre === foodName);
+            console.log(`foodDetails: ${foodDetails.Nombre} ${foodDetails.Kilocalorias} ${foodDetails.Grasas} ${foodDetails.Carbohidratos} ${foodDetails.Azucares} ${foodDetails.Proteinas}`);
             const mealData = {
                 date: currentDate,
                 mealType: mealType,
                 foodName: foodName,
+                foodDetails: foodDetails,
                 // Podríamos buscar el objeto completo en allFoods si el backend necesita más datos
                 // const foodDetails = allFoods.find(f => f.name === foodName);
                 // ... pasar foodDetails completo o sus nutrientes
             };
 
-            // Retornamos la promesa de fetch para cada alimento
-
-            console.log('Haciendo fetch para:', mealData);
-            return fetch(`${WEB_APP_URL}?action=recordMeal`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify(mealData),
-                // Considera las mismas notas que en handleAddFood sobre el body y headers
-            })
-            .then(response => {
-                console.log('Response:', response);
-                 // Asumimos que cada petición individual devuelve JSON {success: true} o {error: ...}
-                 // O podría devolver solo texto de éxito/error
-                 // Aquí solo verificamos si la petición fue OK (status 2xx) para simplificar
-                 if (!response.ok) {
-                    // Podríamos intentar leer el error del cuerpo si está disponible
-                    return response.text().then(text => { throw new Error(`Error registrando ${foodName}: ${text || response.statusText}`) });
-                 }
-                 return response.json(); // o response.text()
-            })
-            .then(result => {
-                // Opcional: verificar result.success si el backend devuelve JSON detallado
-                 console.log(`Registro de ${foodName} exitoso.`);
-                 return { success: true, foodName: foodName }; // Para Promise.all
-            })
-            .catch(error => {
-                console.error(`Error al registrar ${foodName}:`, error);
-                // Retornamos un objeto de error para Promise.all
+            return new Promise((resolve, reject) => {
+                const xhr = new XMLHttpRequest();
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            // Intentar parsear como JSON primero
+                            try {
+                                const result = JSON.parse(xhr.responseText);
+                                console.log(`Registro de ${foodName} exitoso.`);
+                                resolve({ success: true, foodName: foodName });
+                            } catch (e) {
+                                // Si no es JSON, considerar el texto como éxito
+                                console.log(`Registro de ${foodName} exitoso.`);
+                                resolve({ 
+                                    success: true, 
+                                    foodName: foodName,
+                                    responseText: xhr.responseText 
+                                });
+                            }
+                        } else {
+                            let errorMessage = xhr.statusText;
+                            try {
+                                // Intentar extraer mensaje de error del cuerpo
+                                errorMessage = xhr.responseText || xhr.statusText;
+                            } catch (e) {
+                                // Si falla, usar el mensaje por defecto
+                            }
+                            console.error(`Error al registrar ${foodName}:`, errorMessage);
+                            reject(new Error(`Error registrando ${foodName}: ${errorMessage}`));
+                        }
+                    }
+                };
+                xhr.onerror = function() {
+                    console.error(`Error de red al registrar ${foodName}`);
+                    reject(new Error(`Error de red al registrar ${foodName}`));
+                };
+                console.log('Haciendo petición XMLHttpRequest para:', mealData);
+            
+                // Abrir y enviar la solicitud
+                xhr.open('POST', `${WEB_APP_URL}?action=recordMeal`, true);
+                xhr.setRequestHeader('Content-Type', 'text/plain;charset=utf-8');
+                xhr.send(JSON.stringify(mealData));
+            }).catch(error => {
+                // Capturar cualquier error en la promesa y devolver un objeto de error uniforme
                 return { success: false, foodName: foodName, error: error.message };
             });
         });
@@ -411,12 +392,13 @@ https://script.google.com/macros/s/AKfycbwafG19M5DbEmx8Lei9FSH6ZVb14Ka2ufJwhCRWe
             }
 
             // Asume que la respuesta es { totals: { calories: N, fats: N, ... } } o similar
-            const totals = data.totals || {};
-            totalCaloriesEl.textContent = totals.calories?.toFixed(1) ?? '0';
-            totalFatsEl.textContent = totals.fats?.toFixed(1) ?? '0';
-            totalCarbsEl.textContent = totals.carbs?.toFixed(1) ?? '0';
-            totalSugarsEl.textContent = totals.sugars?.toFixed(1) ?? '0';
-            totalProteinEl.textContent = totals.protein?.toFixed(1) ?? '0';
+            console.log(data);
+            //const totals = data.totals || {};
+            totalCaloriesEl.textContent = data.kilocalorias ?? '0';
+            totalFatsEl.textContent = data.grasas ?? '0';
+            totalCarbsEl.textContent = data.carbohidratos ?? '0';
+            totalSugarsEl.textContent = data.azucares ?? '0';
+            totalProteinEl.textContent = data.proteinas ?? '0';
 
         } catch (error) {
             console.error('Error al obtener el resumen diario:', error);
