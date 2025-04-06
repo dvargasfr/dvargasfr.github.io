@@ -1,0 +1,307 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* style.css */
+
+/* 1. Estilos básicos para el cuerpo */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa; /* Un fondo gris muy claro */
+  color: #343a40; /* Texto principal oscuro */
+  line-height: 1.6;
+}
+
+main {
+  max-width: 900px; /* Limita el ancho para mejor legibilidad */
+  margin: 20px auto; /* Centra el contenido principal */
+  padding: 20px;
+  background-color: #ffffff; /* Fondo blanco para el área principal */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05); /* Sombra sutil */
+  border-radius: 8px;
+}
+
+/* 2. Estilos para el encabezado principal */
+header {
+  background-color: #007bff; /* Azul primario */
+  color: #ffffff;
+  padding: 15px 0;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2em;
+}
+
+/* 3. Estilos para las secciones */
+section {
+  margin-bottom: 30px; /* Espacio entre secciones */
+  padding: 20px;
+  border: 1px solid #dee2e6; /* Borde sutil */
+  border-radius: 5px;
+  background-color: #fff; /* Fondo blanco también para secciones */
+}
+
+section h2 {
+  margin-top: 0;
+  margin-bottom: 20px;
+  font-size: 1.5em;
+  color: #495057; /* Un gris un poco más oscuro para títulos de sección */
+  border-bottom: 1px solid #eee;
+  padding-bottom: 10px;
+}
+
+/* Separador visual (opcional si los márgenes de sección son suficientes) */
+hr {
+  border: none;
+  border-top: 1px solid #e0e0e0;
+  margin: 40px 0;
+}
+
+/* 4. Estilos para filtro y lista de alimentos */
+#filter-food {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box; /* Incluye padding y border en el width */
+}
+
+#food-list {
+  max-height: 300px; /* Altura máxima con scroll si hay muchos alimentos */
+  overflow-y: auto;
+  border: 1px solid #eee;
+  padding: 10px;
+  background-color: #fdfdfd;
+}
+
+/* Estilo para items individuales (asumiendo que serán divs o similar) */
+#food-list > div {
+  padding: 8px 5px;
+  border-bottom: 1px dashed #eee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#food-list > div:last-child {
+  border-bottom: none;
+}
+
+/* Estilo para botones "Añadir a comida" dentro de la lista */
+.add-to-meal-btn {
+  padding: 4px 8px;
+  font-size: 0.9em;
+  background-color: #28a745; /* Verde */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-left: 10px;
+  transition: background-color 0.2s ease;
+}
+.add-to-meal-btn:hover {
+  background-color: #218838;
+}
+
+
+/* 5. Estilos para el formulario de añadir alimento */
+#add-food-form div {
+  /*margin-bottom: 15px;*/ /* Espacio entre cada campo del formulario */
+}
+
+#add-food-form label {
+  display: block; /* El label ocupa su propia línea */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#add-food-form input[type="text"],
+#add-food-form input[type="number"] {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+#add-food-button {
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  transition: background-color 0.2s ease;
+}
+
+#add-food-button:hover {
+  background-color: #0056b3;
+}
+
+/* 6. Estilos para registrar comida */
+#meal-type {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background-color: white; /* Asegura fondo blanco para select */
+}
+
+#selected-foods {
+  min-height: 50px; /* Un poco de altura mínima */
+  border: 1px dashed #ced4da;
+  padding: 10px;
+  margin-bottom: 15px;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+
+#selected-foods p { /* Placeholder si no hay nada seleccionado */
+  color: #6c757d;
+  font-style: italic;
+  margin: 0;
+}
+
+/* Estilo para items individuales en la lista de seleccionados */
+#selected-foods > div {
+  padding: 5px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+}
+#selected-foods > div:last-child {
+  border-bottom: none;
+}
+
+/* Botón Quitar (ejemplo) */
+.remove-from-meal-btn {
+   padding: 3px 6px;
+   font-size: 0.8em;
+   background-color: #dc3545; /* Rojo */
+   color: white;
+   border: none;
+   border-radius: 3px;
+   cursor: pointer;
+   transition: background-color 0.2s ease;
+}
+.remove-from-meal-btn:hover {
+  background-color: #c82333;
+}
+
+
+#record-meal-button {
+  padding: 10px 20px;
+  background-color: #17a2b8; /* Azul verdoso/Info */
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1em;
+  display: block; /* Para que ocupe su línea */
+  width: 100%; /* Opcional: Botón ancho completo */
+  margin-top: 10px;
+  transition: background-color 0.2s ease;
+}
+
+#record-meal-button:hover {
+  background-color: #138496;
+}
+
+/* 7. Estilos para el total diario */
+section[aria-labelledby="daily-summary-heading"] div {
+  margin-bottom: 10px; /* Espacio entre líneas de totales */
+  font-size: 1.1em; /* Un poco más grande */
+  padding: 5px 0;
+}
+
+section[aria-labelledby="daily-summary-heading"] span {
+  font-weight: bold; /* Números en negrita */
+  color: #0056b3; /* Azul oscuro para destacar */
+  margin-left: 8px; /* Espacio entre etiqueta y valor */
+  min-width: 50px; /* Asegura un poco de espacio para los números */
+  display: inline-block; /* Permite aplicar min-width */
+  text-align: right; /* Alinea los números a la derecha si se desea */
+}
+
+/* Estilos adicionales opcionales */
+footer {
+  text-align: center;
+  margin-top: 40px;
+  padding-top: 20px;
+  border-top: 1px solid #eee;
+  font-size: 0.9em;
+  color: #6c757d; /* Gris */
+}
+
+/* Estilos para el menú */
+#menu-button {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+  z-index: 100; /* Asegura que el botón esté por encima de todo */
+}
+
+#menu {
+  position: fixed;
+  top: 0;
+  left: -250px; /* Oculto fuera de la pantalla */
+  width: 250px;
+  height: 100%;
+  background-color: #343a40; /* Fondo oscuro */
+  color: white;
+  transition: left 0.3s ease; /* Animación suave */
+  z-index: 99; /* Menú por debajo del botón pero por encima del contenido */
+  padding-top: 60px; /* Espacio para el botón */
+}
+
+#menu.open {
+  left: 0; /* Mostrar el menú */
+}
+
+#menu ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+#menu li {
+  padding: 10px 20px;
+  border-bottom: 1px solid #555;
+  cursor: pointer;
+}
+
+#menu li:hover {
+  background-color: #495057;
+}
+
+/* Ocultar secciones por defecto */
+#add-food,
+#record-meal {
+  display: none;
+}

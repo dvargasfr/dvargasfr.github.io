@@ -1,0 +1,64 @@
+/* FoodList.css */
+#food-list-section {
+  margin-bottom: 20px;
+}
+
+#food-list {
+  display: flex;
+  flex-direction: column;
+  gap: 5px; /* Reduced gap between food items */
+}
+
+.food-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 5px 10px; /* Reduced padding */
+  width: 100%;
+  box-sizing: border-box;
+  border-bottom: 1px solid #eee; /* Add a subtle bottom border */
+}
+
+.food-item:last-child {
+  border-bottom: none; /* Remove the border from the last item */
+}
+
+.food-name {
+  margin-right: 10px;
+  flex-grow: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.food-grid {
+  display: flex;
+  gap: 5px;
+  margin-right: 10px;
+  flex-wrap: wrap;
+}
+
+.grid-cell {
+  padding: 3px 5px; /* Reduced padding */
+  min-width: 3ch;
+  text-align: center;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.8em; /* Further reduced font size */
+  border: none; /* Remove the border */
+}
+
+.add-to-meal-btn {
+  white-space: nowrap;
+  padding: 3px 8px; /* Reduce padding */
+  font-size: 0.8em; /* Reduce font size */
+  background-color: #4CAF50; /* Green */
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+  border-radius: 4px;
+}

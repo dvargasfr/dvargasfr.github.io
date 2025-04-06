@@ -1,0 +1,41 @@
+/* DailySummary.css */
+.daily-summary-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.date-picker {
+  padding: 5px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1em;
+}
+
+.daily-summary-grid {
+  display: grid;
+  grid-template-rows: auto auto; /* Two rows */
+  grid-template-columns: repeat(5, 1fr); /* Five columns */
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.grid-row {
+  display: contents; /* Allow children to participate in the grid */
+}
+
+.grid-cell {
+  padding: 10px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+  font-size: 0.9em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid-cell:nth-child(n+6) {
+  font-weight: bold;
+  font-size: 1.1em;
+}

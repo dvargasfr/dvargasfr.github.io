@@ -1,0 +1,38 @@
+/* DailyFoodList.css */
+#daily-food-list-section {
+  margin-top: 20px;
+}
+
+#daily-food-list {
+  list-style: none;
+  padding: 0;
+}
+
+.meal-type-group {
+  margin-bottom: 10px; /* Add space between meal type groups */
+}
+
+.meal-type {
+  font-weight: bold;
+  display: block; /* Make meal type take full width */
+  margin-bottom: 5px; /* Add space between meal type and food list */
+}
+
+.food-list {
+  list-style: none;
+  padding: 0;
+  margin-left: 20px; /* Indent food items */
+}
+
+.food-item {
+  padding: 5px 0;
+  border-bottom: 1px solid #eee;
+}
+
+.food-item:last-child {
+  border-bottom: none;
+}
+
+.food-name {
+  display: block; /* Make food name take full width */
+}

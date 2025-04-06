@@ -391,7 +391,6 @@ https://script.google.com/macros/s/AKfycbxAjOwHDhgQjfoRrkT_9krqCLBo8mlHer4YnrtmD
                 throw new Error(data.error);
             }
 
-            // Asume que la respuesta es { totals: { calories: N, fats: N, ... } } o similar
             console.log(data);
             //const totals = data.totals || {};
             totalCaloriesEl.textContent = data.kilocalorias ?? '0';
