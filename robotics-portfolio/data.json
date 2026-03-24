@@ -1,0 +1,291 @@
+{
+    "AI Engineer": {
+        "empresa": "Vodafone Group",
+        "periodo": "2024 - Actualidad",
+        "proyectos": [
+            {
+                "titulo": "Proyecto Local AI", 
+                "fecha": "Diciembre 2025", 
+                "id": "2025-12", 
+                "desc": "Inestigación y desarrollo de soluciones basadas en LLMs libres o abiertos (Qwen, Llama, Mistral, DeepSeek) desplegadas de forma local a través de Ollama y tecnologías como Docker."
+            },
+            {
+                "titulo": "Proyecto AI Cloud", 
+                "fecha": "Agosto 2025", 
+                "id": "2025-08", 
+                "desc": "Desarrollo de un entorno de prueba para despliegue de soluciones IA en distintas Clouds (GCP, AWS, Azure) en el que testear protocolos de comunicación emergentes como A2A (Agent-to-Agent) de Google."
+            },
+            {
+                "titulo": "Pruebas de Concepto (AI PoCs)", 
+                "fecha": "Marzo 2025", 
+                "id": "2025-03", 
+                "desc": "Integración de sistemas de comunicaciones existentes con diversas tecnologías IA, como comunicaciones MCP, arquitecturas RAG o técnicas de Chain-Of-Thought para la validación de casos de uso representativos de las necesidades de Vodafone en el ámbito de la arquitectura de comunicaciones."
+            },
+            {
+                "titulo": "Proyecto Agents Playground", 
+                "fecha": "Diciembre 2024", 
+                "id": "2024-12", 
+                "desc": "Investigación del estado del arte de los diferentes frameworks para el desarrollo de sistemas de agentes de IA (Google ADK, OpenAI AgentKit, Claude AgentsSDK, AWS Bedrock, LangChain/LangGraph, CrewAI, AutoGen, Llamaindex, Semantic Kernel, Hugginface), y desarrollo de un entorno de pruebas para la comparación de los mismos en distintos casos de uso representativos de las necesidades de Vodafone en el ámbito de la arquitectura de comunicaciones."
+            }
+        ]
+    },
+    "Innovation Engineer": {
+        "empresa": "Vodafone España",
+        "periodo": "2022 - 2024",
+        "proyectos": [
+            {
+                "titulo": "Proyecto WebIDs", 
+                "fecha": "Septiembre 2024", 
+                "id": "2024-09", 
+                "desc": "Desarrollo y despliegue de una solución de visión artificial ejecutando en navegador basada en OpenCV.js para la identificación automática de documentos de identidad y apoyo al sistema antifraude en el proceso de registro de nuevos clientes de Vodafone España."
+            },
+            {
+                "titulo": "Proyecto Virtual Stores", 
+                "fecha": "Octubre 2023", 
+                "id": "2023-10", 
+                "desc": "Desarrollo y despliegue de un sistema basado en tecnologías de Realidad Aumentada y webXR para la visualización interactiva de productos de Vodafone a través del navegador de dispositivos móviles en mediante códigos QR especiales. Testeo en tiendas físicas con el objetivo de mejorar la experiencia de usuario y aumentar las ventas en tienda."
+            },
+            {
+                "titulo": "Proyecto Research Radar", 
+                "fecha": "Febrero 2023", 
+                "id": "2023-02", 
+                "desc": "Investigación continua de tecnologías emergentes para la continua actualización del estado del arte de diversas tecnologías (webXR, Spatial Computing, Computer Vision, Quantum Computing, Autonomous Driving, IoT) y su posible aplicación en el ámbito IT."
+                },
+            {
+                "titulo": "Proyecto GenIA", 
+                "fecha": "Diciembre 2022", 
+                "id": "2022-12", 
+                "desc": "Investigación y desarrollo de diversas pruebas de conpepto para el testeo de la tecnología emergente de IA Generativa para su posible aplicación en el ámbito IT."
+            },
+            {
+                "titulo": "Proyecto ARTobi", 
+                "fecha": "Septiembre 2022", 
+                "id": "2022-09", 
+                "desc": "Desarrollo de una versión en Realidad Aumentada del asistente virtual de Vodafone, Tobi, para su uso a través de dispositivos móviles, con el objetivo de mejorar la experiencia de usuario."
+            }
+        ]
+    },
+    "Robotics Engineer": {
+        "empresa": "Acciona",
+        "periodo": "2020 - 2022",
+        "proyectos": [
+            {
+                "titulo": "Proyecto interfaz web para control de robots multiplataforma", 
+                "fecha": "Marzo 2022", 
+                "id": "2022-03", 
+                "desc": "Desarrollo full stack de una interfaz web para control de robots multiplataforma, integrando el control de distintos tipos de robots: cuadrúpedos como Spot de Boston Dynamics, móviles con ruedas como Summit de Robotnik, o como Ridgeback de Clearpath Robotics. Integración de distintos tipos de misiones (teleoperación, misiones autónomas, misiones semiautónomas) en una única interfaz de usuario.",
+                "imagen": "2022-robin.png"
+            },
+            {
+                "titulo": "Cotutor TFM", 
+                "fecha": "Febrero 2022", 
+                "id": "2022-02", 
+                "desc": "Cotutoría de Trabajo Fin de Máster titulado \"Sistema Interactivo de Realidad Aumentada para monitorización y control de robots en tiempo de ejecución\" del Máster en Robótica y Automática de la Universidad Politécnica de Madrid",
+                "imagen": "2022-cotutortfm.jpg"
+            },
+            {
+                "titulo": "Proyecto mina de Chuquicamata, Chile", 
+                "fecha": "Noviembre 2021", 
+                "id": "2021-11", 
+                "desc": "Despliegue de robot cuadrúpedo Spot para automatización de tareas de minería en mina de Chuquicamata, Chile",
+                "imagen": "2021-chile.jpg"
+            },
+            {
+                "titulo": "Proyecto integración payloads Leica en Spot", 
+                "fecha": "Septiembre 2021", 
+                "id": "2021-09", 
+                "desc": "Integración en el robot cuadrúpedo Spot de distintos payloads de Leica: escáner láser BLK360 y escáner láser RTC360.",
+                "imagen": "2021-spotleica.jpg"
+            },
+            {
+                "titulo": "Proyecto Saferbot", 
+                "fecha": "Julio 2021", 
+                "id": "2021-07", 
+                "desc": "Implantanción de robot autónomo (plataforma MiR) de desifección mediante luz ultravioleta en los distintos edificios de oficinas de Acciona.",
+                "imagen": "2021-saferbot.jpg"
+            },
+            {
+                "titulo": "Proyecto planta biomasa Sangüesa", 
+                "fecha": "Mayo 2021", 
+                "id": "2021-05", 
+                "desc": "Tareas de inspección y vigilancia del recinto de la planta de biomasa de Acciona en Sangüesa, con robot cuadrúpedo Spot de Boston Dynamics.",
+                "imagen": "2021-sanguesa.jpg"
+            },
+            {
+                "titulo": "Proyecto túneles de Tarragona", 
+                "fecha": "Febrero 2021", 
+                "id": "2021-02", 
+                "desc": "Tareas de escaneo del progreso de las obras de construcción por parte de Acciona de los túneles de Tarragona, con robot cuadrúpedo Spot de Boston Dynamics.",
+                "imagen": "2021-tuneltarragona.jpg"
+            },
+            {
+                "titulo": "Proyecto escaneo de edificio Ombú", 
+                "fecha": "Enero 2021", 
+                "id": "2021-01", 
+                "desc": "Tareas de escaneo del progreso de las obras de reconstrucción por parte de Acciona del edificio Ombú en Mendez Álvaro, Madrid, con robot cuadrúpedo Spot de Boston Dynamics.",
+                "imagen": "2021-ombu.jpg"
+            },
+            {
+                "titulo": "Proyecto integración payloads Trimble en Spot", 
+                "fecha": "Noviembre 2020", 
+                "id": "2020-11", 
+                "desc": "Integración en el robot cuadrúpedo Spot de distintos payloads de Trimble: Escáner láser X7 y GPS GNSS SPS986.",
+                "imagen": "2020-spottrimble.jpg"
+            },
+            {
+                "titulo": "Proyecto misiones autónomas Spot", 
+                "fecha": "Junio 2020", 
+                "id": "2020-06", 
+                "desc": "Desarrollo y puesta en marcha de diversas misiones autónomas con robot cuadrúpedo Spot de Boston Dynamics para las distintas áreas de negocio de Acciona.",
+                "imagen": "2020-spotacciona.jpg"
+            }
+        ]
+    },
+    "Robotics Researcher URJC": {
+        "empresa": "Robotics Research Group URJC",
+        "periodo": "2018 - 2020",
+        "proyectos": [
+            {
+                "titulo": "Competición SciRoc UK", 
+                "fecha": "Septiembre 2019", 
+                "id": "2019-09", 
+                "desc": "Participación en la competición internacional de robótica SciRoc (Smart Cities Robotic Challenges) y ganadores de la prueba Elevator Challenge, con robot Tiago de PAL Robotics, celebrada en Milton Keynes, UK",
+                "imagen": "2019-sciroc.jpg"
+            },
+            {
+                "titulo": "Proyecto ARViz, ROS en XR", 
+                "fecha": "Septiembre 2019", 
+                "id": "2019-09", 
+                "desc": "Proyecto Europeo-H2020 ROSin FTP (ROS-Industrial Focused Technical Project) consistente en la compilación cruzada de ROS para su ejecución de forma nativa en las gafas de Realidad Mixta HoloLens de Microsoft.",
+                "video_id": "Av-UpGzqmOc"
+            },
+            {
+                "titulo": "Proyecto Vicon ROS", 
+                "fecha": "Julio 2019", 
+                "id": "2019-07", 
+                "desc": "Integración de sistema de captura de movimiento Vicon en ROS.",
+                "video_id": "Flr37LQrHBw"
+            },
+            {
+                "titulo": "Mobile World Congress 2019", 
+                "fecha": "Febrero 2019", 
+                "id": "2019-02", 
+                "desc": "Presentación en el Mobile World Congress 2019 de Barcelona del caso de uso “Teleoperación inmersiva de un robot logístico mediante VR a través de comunicación 5G” con robot MIR, en colaboración con Acciona",
+                "imagen": "2019-MWC.jpg"
+            },
+            {
+                "titulo": "Congreso IROS + Competición ERL", 
+                "fecha": "Octubre 2018", 
+                "id": "2018-10", 
+                "desc": "Participante en la competición ERL (European Robotics League) con robots Pepper y Tiago, celebrada durante el congreso IROS 2018 en Madrid.",
+                "imagen": "2018-IROS.jpg"
+            },
+            {
+                "titulo": "Proyecto robot recepcionista de oficinas", 
+                "fecha": "Agosto 2018", 
+                "id": "2018-08", 
+                "desc": "Proyecto Pepper robot recepcionista para Acciona",
+                "imagen": "2018-pepperacciona.jpg"
+            },
+            {
+                "titulo": "Competición RoboCup Canadá", 
+                "fecha": "Junio 2018", 
+                "id": "2018-06", 
+                "desc": "Participación en competición internacional de robótica RoboCup, con robot Pepper en la modalidad @Home, celebrada en Montreal, Canadá.",
+                "imagen": "2018-robocup.jpg"
+            },
+            {
+                "titulo": "Docente título propio URJC de ROS", 
+                "fecha": "Marzo 2018", 
+                "id": "2018-03", 
+                "desc": "Parte del equipo docente del curso de ROS que otorgaba el título propio expedido por la URJC"
+            },
+            {
+                "titulo": "Proyecto robot recepcionista de hotel", 
+                "fecha": "Febrero 2018", 
+                "id": "2018-02", 
+                "desc": "Caso de uso de robot Pepper como recepcionista del Hotel Petit Palace de Madrid",
+                "imagen": "2018-petitpalace.jpg"
+            }
+        ]
+    },
+    "Robotics Researcher UPM": {
+        "empresa": "CAR (Centro de Automática y Robótica) UPM",
+        "periodo": "2016 - 2017",
+        "proyectos": [
+            {
+                "titulo": "Proyecto de telemanipulación háptica", 
+                "fecha": "Noviembre 2017", 
+                "id": "2017-11", 
+                "desc": "Control telemanipulado de un brazo robótico Kraft a través de un dispositivo háptico Phantom Omni. Desarrollo e integración de paquetes ROS para la comunicación retroalimentada entre el dispositivo háptico y el brazo robótico.",
+                "imagen": "2017-kraftphantom.jpg"
+            },
+            {
+                "titulo": "Docente de ROS y Gazebo", 
+                "fecha": "Octubre 2017", 
+                "id": "2017-10", 
+                "desc": "Colaboración con el equipo docente del Máster en Automática y Robótica de la Universidad Politécnica de Madrid como instructor del módulo de Gazebo del curso de ROS impartido a los alumnos del máster.",
+                "imagen": "2017-cursoros.png"
+            },
+            {
+                "titulo": "Jornadas Nacionales de Robótica (JNR)", 
+                "fecha": "Junio 2017", 
+                "id": "2017-06", 
+                "desc": "Exposición de paper basado en distintos trabajos de investigación realizados por el grupo de investigación de Robótica del CAR (Centro de Automática y Robótica) de la UPM durante las Jornadas Nacionales de Robótica (JNR) celebradas en Valencia.",
+                "imagen": "2017-JNR.jpg"
+            },
+            {
+                "titulo": "Security & Counter Terror Expo (STX)", 
+                "fecha": "Mayo 2017", 
+                "id": "2017-05", 
+                "desc": "Presentación del trabajo realizado para el proyecto AUGGMED en la Feria de Seguridad y Antiterrorismo celebrada en Londres.",
+                "imagen": "2017-auggmed.jpg"
+            },
+            {
+                "titulo": "Competición MBZIRC", 
+                "fecha": "Marzo 2017", 
+                "id": "2017-03", 
+                "desc": "Participación en la competición internacional de robótica MBZIRC (Mohamed Bin Zayed International Robotics Challenge), celebrada en Abu Dhabi. Proyecto y competición realizados en colaboración con GMV y la Universidad de Sevilla.",
+                "imagen": "2017-mbzirc1.jpeg"
+            },
+            {
+                "titulo": "Global Robot Expo", 
+                "fecha": "Febrero 2017", 
+                "id": "2017-02", 
+                "desc": "Exposición del trabajo realizado como TFM en la feria de robótica Global Robot Expo 2017, celebrada en Madrid.",
+                "imagen": "2017-globalrobotexpo.jpg"
+            },
+            { 
+                "titulo": "Proyecto AUGGMED", 
+                "fecha": "Febrero 2017", 
+                "id": "2017-02", 
+                "desc": "Colaboración en el proyecto europeo AUGGMED financiado por la Comisión Europea a través del programa Horizon 2020. El objetivo del Proyecto AUGGMED es desarrollar una plataforma de juego serio en Realidad Virtual que permita la formación y entrenamiento de manera inmersiva de distintas organizaciones que responden a amenazas de seguridad y terroristas. Colaboración en el desarrollo e integración de un chaleco háptico en los entornos de realidad virtual del proyecto.",
+                "imagen": "2017-chaleco1.jpg" 
+            }
+        ]
+    },
+    "Máster en Robótica y Automática": {
+        "empresa": "Universidad Politécnica de Madrid",
+        "periodo": "2016 - 2017",
+        "proyectos": [
+            { 
+                "titulo": "Trabajo Fin de Máster", 
+                "fecha": "Febrero 2017", 
+                "id": "2017-02", 
+                "desc": "Realización de Trabajo Fin de Máster del Máster en Robótica y Automática de la Universidad Politécnica de Madrid, titulado \"Sistema multimodal de realidad virtual para interacción háptica y visual desarrollado con Unity3D\""
+            }
+        ]
+    },
+    "Grado en Ingeniería de Telecomunicaciones": {
+        "empresa": "Universidad Rey Juan Carlos",
+        "periodo": "2010 - 2015",
+        "proyectos": [
+            { 
+                "titulo": "Matrícula de Honor en TFG", 
+                "fecha": "Junio 2015", 
+                "id": "2015-06", 
+                "desc": "Calificación de Matrícula de Honor por el Trabajo de Fin de Grado titulado \"Contribución a la autonomía de robots móviles mediante el desarrollo de algoritmos de Markov\""
+            }
+        ]
+    }
+}
