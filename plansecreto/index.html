@@ -14,6 +14,20 @@
   </header>
 
   <main class="puzzles">
+
+   <!-- LANDING / INTRODUCCIÓN -->
+   <section class="landing" data-landing>
+     <div class="landing-inner">
+       <span class="landing-eyebrow">Antes de empezar</span>
+       <h2 class="landing-title">Bienvenido Raul!</h2>
+       <p class="landing-text">
+         Hay un plan secreto cargado de aventuras que te está esperando. Resuelve los siguientes rompecabezas para conocer más detalles sobre el plan.
+       </p>
+
+       <button type="button" class="landing-start" data-landing-start>Comenzar 🚀</button>
+     </div>
+   </section>
+
    <div class="carousel" data-carousel>
 
     <!-- SECRETO 1 -->
@@ -134,6 +148,7 @@
         <h3>🎉 ¡Secreto desbloqueado!</h3>
         <p>El lugar del evento es: <!-- TODO: nombre/dirección del lugar (opcional) --></p>
         <img src="images/ubicacion-plan-secreto.png" alt="Mapa de la ubicación del evento" class="reveal-image">
+        <button type="button" class="download-cta" data-show-final>DESCARGAR PLAN SECRETO</button>
       </div>
     </section>
 
@@ -144,6 +159,16 @@
       <div class="carousel-dots" data-dots></div>
       <button type="button" class="carousel-arrow" data-carousel-next aria-label="Siguiente rompecabezas">▶</button>
     </nav>
+
+   <!-- VISTA FINAL: PLAN SECRETO -->
+   <section class="final-view" data-final-view hidden>
+     <div class="final-inner">
+       <span class="landing-eyebrow">¡Lo has conseguido!</span>
+       <h2 class="final-title">Este es tu plan secreto</h2>
+       <img src="images/mensaje-final.png" alt="Plan secreto" class="final-image">
+       <a class="final-download" href="images/mensaje-final.png" download="plan-secreto.png">⬇️ Descargar imagen</a>
+     </div>
+   </section>
 
   </main>
 

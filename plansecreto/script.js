@@ -9,6 +9,7 @@ const ANSWERS = {
 };
 
 const STORAGE_KEY = "plan-secreto-progress";
+const LANDING_KEY = "plan-secreto-landing-seen";
 
 function normalize(str) {
   return str.trim().toLowerCase();
@@ -203,6 +204,51 @@ function initCarousel() {
   render();
 }
 
+function initLanding() {
+  const landing = document.querySelector("[data-landing]");
+  const carousel = document.querySelector("[data-carousel]");
+  const nav = document.querySelector("[data-carousel-nav]");
+  const startBtn = document.querySelector("[data-landing-start]");
+
+  function hideLanding() {
+    landing.hidden = true;
+    carousel.hidden = false;
+    nav.hidden = false;
+  }
+
+  function showLanding() {
+    landing.hidden = false;
+    carousel.hidden = true;
+    nav.hidden = true;
+  }
+
+  if (localStorage.getItem(LANDING_KEY)) {
+    hideLanding();
+  } else {
+    showLanding();
+  }
+
+  startBtn.addEventListener("click", () => {
+    localStorage.setItem(LANDING_KEY, "1");
+    hideLanding();
+  });
+}
+
+function initFinalView() {
+  const showBtn = document.querySelector("[data-show-final]");
+  if (!showBtn) return;
+
+  const finalView = document.querySelector("[data-final-view]");
+  const carousel = document.querySelector("[data-carousel]");
+  const nav = document.querySelector("[data-carousel-nav]");
+
+  showBtn.addEventListener("click", () => {
+    carousel.hidden = true;
+    nav.hidden = true;
+    finalView.hidden = false;
+  });
+}
+
 function restoreProgress() {
   const progress = loadProgress();
   document.querySelectorAll(".puzzle").forEach((section) => {
@@ -216,10 +262,13 @@ function restoreProgress() {
 document.querySelectorAll(".puzzle").forEach(initPuzzle);
 restoreProgress();
 initCarousel();
+initLanding();
+initFinalView();
 
 document.getElementById("reset-btn").addEventListener("click", () => {
   if (confirm("¿Reiniciar todo el progreso?")) {
     localStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(LANDING_KEY);
     location.reload();
   }
 });
