@@ -1,0 +1,402 @@
+:root {
+  --bg: #0f1117;
+  --panel: #1a1d27;
+  --panel-border: #2c3040;
+  --accent: #7dd3fc;
+  --accent-strong: #38bdf8;
+  --text: #e6e8ef;
+  --text-dim: #9aa0b0;
+  --ok: #4ade80;
+  --err: #f87171;
+  --font: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  padding: 2rem 1rem 4rem;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font);
+  line-height: 1.5;
+}
+
+.site-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.site-header h1 {
+  margin: 0 0 0.5rem;
+  font-size: 2rem;
+}
+
+.subtitle {
+  color: var(--text-dim);
+  margin: 0;
+}
+
+.puzzles {
+  max-width: 640px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.puzzle {
+  background: var(--panel);
+  border: 1px solid var(--panel-border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: border-color 0.2s ease;
+}
+
+.puzzle.solved {
+  border-color: var(--ok);
+}
+
+.puzzle-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.75rem;
+}
+
+.puzzle-header h2 {
+  margin: 0;
+  font-size: 1.15rem;
+}
+
+.status {
+  font-size: 0.85rem;
+  color: var(--text-dim);
+}
+
+.puzzle.solved .status {
+  color: var(--ok);
+}
+
+.puzzle-desc {
+  color: var(--text-dim);
+  margin: 0 0 1rem;
+}
+
+.answer-form {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.hint {
+  background: rgba(125, 211, 252, 0.08);
+  border: 1px solid rgba(125, 211, 252, 0.3);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  color: var(--accent);
+  font-size: 0.9rem;
+  margin: 0 0 1rem;
+}
+
+.digit-form {
+  flex-direction: column;
+  align-items: center;
+  gap: 1.1rem;
+}
+
+.digit-inputs {
+  display: flex;
+  gap: 0.9rem;
+}
+
+.digit-wheel {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  outline: none;
+  border-radius: 12px;
+}
+
+.digit-wheel:focus-visible .wheel-display {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px rgba(125, 211, 252, 0.25);
+}
+
+.answer-form .wheel-btn {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: 0.85rem;
+  line-height: 1;
+  padding: 0.15rem;
+  font-weight: 400;
+  border-radius: 0;
+  cursor: pointer;
+}
+
+.answer-form .wheel-btn:hover {
+  background: none;
+  color: var(--accent);
+}
+
+.wheel-display {
+  position: relative;
+  width: 4rem;
+  height: 6rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 2rem;
+  background: #0b0d13;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  user-select: none;
+  cursor: default;
+}
+
+.wheel-digit {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.wheel-digit.prev,
+.wheel-digit.next {
+  color: var(--text-dim);
+  font-size: 1.25rem;
+  opacity: 0.4;
+}
+
+.wheel-digit.current {
+  color: var(--text);
+  font-size: 2.1rem;
+  font-weight: 700;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.radio-form {
+  flex-direction: column;
+  align-items: stretch;
+  gap: 1rem;
+}
+
+.radio-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.radio-option {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.6rem 0.8rem;
+  border: 1px solid var(--panel-border);
+  border-radius: 8px;
+  background: #11131b;
+  cursor: pointer;
+}
+
+.radio-option:hover {
+  border-color: var(--accent);
+}
+
+.radio-option input {
+  accent-color: var(--accent-strong);
+}
+
+.radio-form button {
+  align-self: flex-start;
+}
+
+.embed-wrap {
+  display: flex;
+  justify-content: center;
+}
+
+.embed-wrap iframe {
+  width: 100%;
+  max-width: 600px;
+  height: 800px;
+  border: 0;
+  border-radius: 8px;
+}
+
+.confirm-form {
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.puzzle.solved .embed-wrap {
+  display: none;
+}
+
+.answer-form input {
+  flex: 1;
+  padding: 0.6rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid var(--panel-border);
+  background: #11131b;
+  color: var(--text);
+  font-size: 1rem;
+}
+
+.answer-form input:focus {
+  outline: none;
+  border-color: var(--accent);
+}
+
+.answer-form button {
+  padding: 0.6rem 1.1rem;
+  border-radius: 8px;
+  border: none;
+  background: var(--accent-strong);
+  color: #0f1117;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.answer-form button:hover {
+  background: var(--accent);
+}
+
+.puzzle.solved .answer-form {
+  display: none;
+}
+
+.feedback {
+  min-height: 1.2em;
+  margin: 0.6rem 0 0;
+  font-size: 0.9rem;
+}
+
+.feedback.ok { color: var(--ok); }
+.feedback.err { color: var(--err); }
+
+.secret-reveal {
+  margin-top: 1rem;
+  padding: 1rem;
+  border-radius: 8px;
+  background: rgba(74, 222, 128, 0.08);
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.secret-reveal h3 {
+  margin: 0 0 0.4rem;
+  font-size: 1rem;
+  color: var(--ok);
+}
+
+.secret-reveal p {
+  margin: 0;
+}
+
+.reveal-image {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  margin-top: 0.75rem;
+  border-radius: 8px;
+  border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.site-footer {
+  text-align: center;
+  margin-top: 3rem;
+}
+
+#reset-btn {
+  background: none;
+  border: 1px solid var(--panel-border);
+  color: var(--text-dim);
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+#reset-btn:hover {
+  border-color: var(--err);
+  color: var(--err);
+}
+
+.carousel .puzzle {
+  display: none;
+}
+
+.carousel .puzzle.active {
+  display: block;
+}
+
+.carousel-nav {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.2rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-arrow {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 50%;
+  border: 1px solid var(--panel-border);
+  background: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.carousel-arrow:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.carousel-arrow:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+}
+
+.carousel-dots {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.dot {
+  width: 0.7rem;
+  height: 0.7rem;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--panel-border);
+  cursor: pointer;
+}
+
+.dot.solved {
+  background: var(--ok);
+}
+
+.dot.active {
+  background: var(--accent-strong);
+  transform: scale(1.35);
+}
+
+.dot:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px; height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+}

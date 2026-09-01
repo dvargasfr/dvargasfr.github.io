@@ -1,1 +1,156 @@
-Hello plansecreto!!
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Plan Secreto</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <h1>🔐 Plan Secreto</h1>
+    <p class="subtitle">Resuelve los 3 rompecabezas para descubrir todos los secretos.</p>
+  </header>
+
+  <main class="puzzles">
+   <div class="carousel" data-carousel>
+
+    <!-- SECRETO 1 -->
+    <section class="puzzle" id="puzzle-1" data-puzzle="1">
+      <div class="puzzle-header">
+        <h2>Rompecabezas 1</h2>
+        <span class="status" data-status>🔒 Bloqueado</span>
+      </div>
+      <p class="puzzle-desc">
+        Descifra el código de 4 cifras para averiguar la <strong>hora</strong> del evento.
+      </p>
+      <p class="hint">
+        💡 Pista: Descubre el código para conocer la hora de tu plan secreto.
+        A esta hora las dos agujas del reloj apuntan al mismo número.
+      </p>
+      <form class="answer-form digit-form" data-form data-type="digits">
+        <div class="digit-inputs" data-digit-group>
+          <div class="digit-wheel" data-wheel data-value="0" tabindex="0" role="spinbutton" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0" aria-label="Dígito 1">
+            <button type="button" class="wheel-btn wheel-up" tabindex="-1" aria-hidden="true">▲</button>
+            <div class="wheel-display">
+              <span class="wheel-digit prev" data-prev>9</span>
+              <span class="wheel-digit current" data-current>0</span>
+              <span class="wheel-digit next" data-next>1</span>
+            </div>
+            <button type="button" class="wheel-btn wheel-down" tabindex="-1" aria-hidden="true">▼</button>
+          </div>
+          <div class="digit-wheel" data-wheel data-value="0" tabindex="0" role="spinbutton" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0" aria-label="Dígito 2">
+            <button type="button" class="wheel-btn wheel-up" tabindex="-1" aria-hidden="true">▲</button>
+            <div class="wheel-display">
+              <span class="wheel-digit prev" data-prev>9</span>
+              <span class="wheel-digit current" data-current>0</span>
+              <span class="wheel-digit next" data-next>1</span>
+            </div>
+            <button type="button" class="wheel-btn wheel-down" tabindex="-1" aria-hidden="true">▼</button>
+          </div>
+          <div class="digit-wheel" data-wheel data-value="0" tabindex="0" role="spinbutton" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0" aria-label="Dígito 3">
+            <button type="button" class="wheel-btn wheel-up" tabindex="-1" aria-hidden="true">▲</button>
+            <div class="wheel-display">
+              <span class="wheel-digit prev" data-prev>9</span>
+              <span class="wheel-digit current" data-current>0</span>
+              <span class="wheel-digit next" data-next>1</span>
+            </div>
+            <button type="button" class="wheel-btn wheel-down" tabindex="-1" aria-hidden="true">▼</button>
+          </div>
+          <div class="digit-wheel" data-wheel data-value="0" tabindex="0" role="spinbutton" aria-valuemin="0" aria-valuemax="9" aria-valuenow="0" aria-label="Dígito 4">
+            <button type="button" class="wheel-btn wheel-up" tabindex="-1" aria-hidden="true">▲</button>
+            <div class="wheel-display">
+              <span class="wheel-digit prev" data-prev>9</span>
+              <span class="wheel-digit current" data-current>0</span>
+              <span class="wheel-digit next" data-next>1</span>
+            </div>
+            <button type="button" class="wheel-btn wheel-down" tabindex="-1" aria-hidden="true">▼</button>
+          </div>
+        </div>
+        <button type="submit">Comprobar</button>
+      </form>
+      <p class="feedback" data-feedback></p>
+      <div class="secret-reveal" data-secret hidden>
+        <h3>🎉 ¡Secreto desbloqueado!</h3>
+        <p>La hora del evento es las <strong>18:30</strong>.</p>
+      </div>
+    </section>
+
+    <!-- SECRETO 2 -->
+    <section class="puzzle" id="puzzle-2" data-puzzle="2">
+      <div class="puzzle-header">
+        <h2>Rompecabezas 2</h2>
+        <span class="status" data-status>🔒 Bloqueado</span>
+      </div>
+      <p class="puzzle-desc">
+        ¿Cuándo ocurrirá? Quédate con la fecha porque será el día del plan secreto!
+      </p>
+      <form class="answer-form radio-form" data-form data-type="radio">
+        <div class="radio-options" data-radio-group>
+          <label class="radio-option">
+            <input type="radio" name="answer-2" value="31 de Febrero de 2037">
+            31 de Febrero de 2037
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="answer-2" value="20 de Mayo de 1991">
+            20 de Mayo de 1991
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="answer-2" value="04 de Septiembre de 2026">
+            04 de Septiembre de 2026
+          </label>
+          <label class="radio-option">
+            <input type="radio" name="answer-2" value="14 de Septiembre de 2026">
+            14 de Septiembre de 2026
+          </label>
+        </div>
+        <button type="submit">Comprobar</button>
+      </form>
+      <p class="feedback" data-feedback></p>
+      <div class="secret-reveal" data-secret hidden>
+        <h3>🎉 ¡Secreto desbloqueado!</h3>
+        <p>El evento será el <strong>04 de Septiembre de 2026</strong>.</p>
+      </div>
+    </section>
+
+    <!-- SECRETO 3 -->
+    <section class="puzzle" id="puzzle-3" data-puzzle="3">
+      <div class="puzzle-header">
+        <h2>Rompecabezas 3</h2>
+        <span class="status" data-status>🔒 Bloqueado</span>
+      </div>
+      <p class="puzzle-desc">
+        Recompón la imagen y pulsa el botón cuando lo hayas conseguido para descubrir el <strong>lugar</strong> del evento.
+      </p>
+      <div class="embed-wrap">
+        <iframe src="https://puzzlegenio.com/es/photo-puzzle-maker/embed/l46uaGfC" width="600" height="800" frameborder="0" allowfullscreen></iframe>
+      </div>
+      <form class="answer-form confirm-form" data-form data-type="confirm">
+        <button type="submit">He completado el puzzle</button>
+      </form>
+      <p class="feedback" data-feedback></p>
+      <div class="secret-reveal" data-secret hidden>
+        <h3>🎉 ¡Secreto desbloqueado!</h3>
+        <p>El lugar del evento es: <!-- TODO: nombre/dirección del lugar (opcional) --></p>
+        <img src="images/ubicacion-plan-secreto.png" alt="Mapa de la ubicación del evento" class="reveal-image">
+      </div>
+    </section>
+
+   </div>
+
+    <nav class="carousel-nav" data-carousel-nav>
+      <button type="button" class="carousel-arrow" data-carousel-prev aria-label="Rompecabezas anterior">◀</button>
+      <div class="carousel-dots" data-dots></div>
+      <button type="button" class="carousel-arrow" data-carousel-next aria-label="Siguiente rompecabezas">▶</button>
+    </nav>
+
+  </main>
+
+  <footer class="site-footer">
+    <button id="reset-btn" type="button">Reiniciar progreso</button>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
