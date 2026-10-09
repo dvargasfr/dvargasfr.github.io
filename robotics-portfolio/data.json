@@ -7,13 +7,15 @@
                 "titulo": "Proyecto Local AI", 
                 "fecha": "Diciembre 2025", 
                 "id": "2025-12", 
-                "desc": "Inestigación y desarrollo de soluciones basadas en LLMs libres o abiertos (Qwen, Llama, Mistral, DeepSeek) desplegadas de forma local a través de Ollama y tecnologías como Docker."
+                "desc": "Inestigación y desarrollo de soluciones basadas en LLMs libres o abiertos (Qwen, Llama, Mistral, DeepSeek) desplegadas de forma local a través de Ollama y tecnologías como Docker.",
+                "imagen": "2025-ollama.png"
             },
             {
                 "titulo": "Proyecto AI Cloud", 
                 "fecha": "Agosto 2025", 
                 "id": "2025-08", 
-                "desc": "Desarrollo de un entorno de prueba para despliegue de soluciones IA en distintas Clouds (GCP, AWS, Azure) en el que testear protocolos de comunicación emergentes como A2A (Agent-to-Agent) de Google."
+                "desc": "Desarrollo de un entorno de prueba para despliegue de soluciones IA en distintas Clouds (GCP, AWS, Azure) en el que testear protocolos de comunicación emergentes como A2A (Agent-to-Agent) de Google.",
+                "imagen": "2025-a2a.png"
             },
             {
                 "titulo": "Pruebas de Concepto (AI PoCs)", 
@@ -37,19 +39,22 @@
                 "titulo": "Proyecto WebIDs", 
                 "fecha": "Septiembre 2024", 
                 "id": "2024-09", 
+                "imagen": "2024-webid.png",
                 "desc": "Desarrollo y despliegue de una solución de visión artificial ejecutando en navegador basada en OpenCV.js para la identificación automática de documentos de identidad y apoyo al sistema antifraude en el proceso de registro de nuevos clientes de Vodafone España."
             },
             {
                 "titulo": "Proyecto Virtual Stores", 
                 "fecha": "Octubre 2023", 
                 "id": "2023-10", 
+                "imagen": "2023-virtualstore.jpg",
                 "desc": "Desarrollo y despliegue de un sistema basado en tecnologías de Realidad Aumentada y webXR para la visualización interactiva de productos de Vodafone a través del navegador de dispositivos móviles en mediante códigos QR especiales. Testeo en tiendas físicas con el objetivo de mejorar la experiencia de usuario y aumentar las ventas en tienda."
             },
             {
                 "titulo": "Proyecto Research Radar", 
                 "fecha": "Febrero 2023", 
                 "id": "2023-02", 
-                "desc": "Investigación continua de tecnologías emergentes para la continua actualización del estado del arte de diversas tecnologías (webXR, Spatial Computing, Computer Vision, Quantum Computing, Autonomous Driving, IoT) y su posible aplicación en el ámbito IT."
+                "desc": "Investigación continua de tecnologías emergentes para la continua actualización del estado del arte de diversas tecnologías (webXR, Spatial Computing, Computer Vision, Quantum Computing, Autonomous Driving, IoT) y su posible aplicación en el ámbito IT.",
+                "imagen": "2023-radar.png"
                 },
             {
                 "titulo": "Proyecto GenIA", 
